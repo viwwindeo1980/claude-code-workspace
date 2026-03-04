@@ -1,0 +1,2 @@
+This file tests the auto-push hook.
+If you see this on GitHub, auto-push is working!
