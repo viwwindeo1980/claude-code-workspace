@@ -81,21 +81,25 @@ def main() -> None:
     print(f"Team         : {config['team']}")
     print(f"Sprint       : {sprint_name}  ({start_date} → {end_date})\n")
 
-    print("[1/3] Creating iteration node...")
+    print("[1/4] Enabling Epic & Feature backlog levels for team...")
+    enable_backlog_levels(session, config["org"], config["project"], config["team"])
+    print("      OK — Epic, Feature, User Story levels visible")
+
+    print("[2/4] Creating iteration node...")
     iteration_guid = create_iteration(
         session, config["org"], config["project"],
         sprint_name, start_date, end_date,
     )
     print(f"      OK — GUID: {iteration_guid}")
 
-    print("[2/3] Assigning iteration to team...")
+    print("[3/4] Assigning iteration to team...")
     assign_iteration_to_team(
         session, config["org"], config["project"],
         config["team"], iteration_guid,
     )
     print(f"      OK — '{sprint_name}' assigned to '{config['team']}'")
 
-    print("[3/3] Creating work item hierarchy...")
+    print("[4/4] Creating work item hierarchy...")
     create_work_item_hierarchy(
         session, config["org"], config["project"],
         template, sprint_name,
@@ -212,6 +216,38 @@ def format_ado_date(d: date) -> str:
     Plain date strings ("2026-03-04") are rejected by the API.
     """
     return f"{d.isoformat()}T00:00:00Z"
+
+
+# ── Team Settings ────────────────────────────────────────────────────────────
+
+
+def enable_backlog_levels(
+    session: requests.Session,
+    org: str,
+    project: str,
+    team: str,
+) -> None:
+    """
+    PATCH /work/teamsettings
+    Ensures Epics, Features, and User Stories are all visible on the team backlog.
+    By default Azure DevOps hides the Epic level — this makes items invisible on
+    the board even though they exist in the project.
+    """
+    encoded_team = quote(team, safe="")
+    url = (
+        f"{BASE_URL}/{org}/{project}/{encoded_team}"
+        f"/_apis/work/teamsettings"
+        f"?api-version={API_VERSION}"
+    )
+    payload = {
+        "backlogVisibilities": {
+            "Microsoft.EpicCategory":        True,
+            "Microsoft.FeatureCategory":     True,
+            "Microsoft.RequirementCategory": True,
+        }
+    }
+    response = session.patch(url, json=payload)
+    _raise_for_status(response)
 
 
 # ── Iteration API ─────────────────────────────────────────────────────────────
