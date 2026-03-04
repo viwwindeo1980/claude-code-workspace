@@ -1,0 +1,210 @@
+# templates/work_items.yaml
+# ─────────────────────────────────────────────────────────────────────────────
+# Declarative hierarchy template: Epic → Feature → User Story
+#
+# The script reads this file on every run and creates the work items in ADO.
+# Edit this file to change what gets created each sprint.
+#
+# Field reference:
+#   title               → System.Title             (required)
+#   description         → System.Description
+#   tags                → System.Tags              (comma-separated)
+#   area_path           → System.AreaPath          (leave blank for project default)
+#   story_points        → Microsoft.VSTS.Scheduling.StoryPoints  (User Stories only)
+#   priority            → Microsoft.VSTS.Common.Priority         (1=Critical … 4=Low)
+#   acceptance_criteria → Microsoft.VSTS.Common.AcceptanceCriteria (User Stories only)
+# ─────────────────────────────────────────────────────────────────────────────
+
+sprints:
+  name_prefix: "Sprint"   # Final name becomes e.g. "Sprint 2026-03-04"
+  duration_days: 15       # Must match the pipeline schedule period
+
+epics:
+
+  # ── Epic 1 ─────────────────────────────────────────────────────────────────
+  - title: "Platform Modernisation"
+    description: >
+      Migrate legacy services to cloud-native architecture, improving
+      reliability, scalability, and operational efficiency across all regions.
+    area_path: ""
+    tags: "platform, cloud, migration"
+
+    features:
+
+      # ── Feature 1.1 ──────────────────────────────────────────────────────
+      - title: "API Gateway Migration"
+        description: >
+          Replace the existing NGINX reverse proxy with Azure API Management
+          to gain richer policy controls, analytics, and a developer portal.
+        tags: "api, gateway, apim"
+        user_stories:
+
+          - title: "Document existing NGINX routing rules"
+            description: >
+              As a developer, I want all current routing rules catalogued so
+              that no traffic path is missed during migration.
+            acceptance_criteria: >
+              All routes documented in Confluence with owner sign-off.
+              Document reviewed by at least two backend engineers.
+            story_points: 3
+            priority: 2
+
+          - title: "Provision APIM instance in staging"
+            description: >
+              As a DevOps engineer, I want an Azure API Management instance
+              running in staging so that I can validate policies safely before
+              any production cutover.
+            acceptance_criteria: >
+              APIM instance responds on the staging endpoint.
+              Health probe returns HTTP 200. Terraform plan committed to repo.
+            story_points: 5
+            priority: 1
+
+          - title: "Implement OAuth2 policy on APIM"
+            description: >
+              As a security engineer, I want OAuth2 token validation enforced
+              at the gateway so that unauthenticated traffic never reaches
+              backend services.
+            acceptance_criteria: >
+              Token validation policy active on all product APIs.
+              Requests without a valid bearer token return HTTP 401.
+              Integration test suite passes in staging.
+            story_points: 5
+            priority: 1
+
+      # ── Feature 1.2 ──────────────────────────────────────────────────────
+      - title: "Container Registry Consolidation"
+        description: >
+          Merge three legacy Azure Container Registry instances into a single
+          geo-replicated registry to reduce cost and eliminate image drift.
+        tags: "containers, acr, devops"
+        user_stories:
+
+          - title: "Audit all images across existing registries"
+            description: >
+              As a DevOps engineer, I want a full image inventory so that no
+              image is orphaned or lost during the consolidation.
+            acceptance_criteria: >
+              Spreadsheet listing: image name, all tags, last-pull date,
+              owning team. Reviewed and signed off by all team leads.
+            story_points: 2
+            priority: 2
+
+          - title: "Configure geo-replication for consolidated ACR"
+            description: >
+              As an SRE, I want geo-replication enabled on the target registry
+              so that image pulls are low-latency in all production regions.
+            acceptance_criteria: >
+              Replication confirmed to East US 2 and West Europe in the portal.
+              Replication health status shows "Ready" for both replicas.
+            story_points: 3
+            priority: 1
+
+          - title: "Migrate CI/CD pipelines to use consolidated ACR"
+            description: >
+              As a pipeline author, I want all build and deploy pipelines
+              updated to reference the new ACR endpoint so that the legacy
+              registries can be decommissioned.
+            acceptance_criteria: >
+              Zero pipeline definitions referencing old ACR endpoints.
+              All pipelines pass smoke tests post-cutover.
+              Old registries locked (no push access) for two weeks before deletion.
+            story_points: 5
+            priority: 1
+
+  # ── Epic 2 ─────────────────────────────────────────────────────────────────
+  - title: "Developer Experience"
+    description: >
+      Reduce friction in the inner development loop for all engineering teams
+      through standardised environments, automated quality gates, and improved
+      onboarding documentation.
+    area_path: ""
+    tags: "dx, tooling, developer-productivity"
+
+    features:
+
+      # ── Feature 2.1 ──────────────────────────────────────────────────────
+      - title: "Unified Local Development Environment"
+        description: >
+          Ship a devcontainer configuration that mirrors the production service
+          topology so every developer has a consistent, cloud-free local setup.
+        tags: "devcontainer, docker, onboarding"
+        user_stories:
+
+          - title: "Define devcontainer base image"
+            description: >
+              As a developer, I want a standardised base image for the
+              devcontainer so that environment drift between team members is
+              eliminated.
+            acceptance_criteria: >
+              devcontainer.json committed to the repository root.
+              All current team members able to open the repo in VS Code Dev
+              Containers without manual configuration.
+            story_points: 2
+            priority: 2
+
+          - title: "Wire local services with docker-compose"
+            description: >
+              As a developer, I want docker-compose to orchestrate all local
+              service dependencies so that I can run the full integration test
+              suite without any cloud access.
+            acceptance_criteria: >
+              `docker-compose up` brings up all dependent services within 60 s.
+              Full unit test suite passes in an offline environment.
+              No hardcoded cloud credentials required.
+            story_points: 5
+            priority: 1
+
+          - title: "Write developer onboarding documentation"
+            description: >
+              As a new joiner, I want step-by-step environment setup docs so
+              that I am fully productive within my first working day.
+            acceptance_criteria: >
+              Documentation reviewed by two engineers who followed it cold and
+              reached a working environment without assistance.
+              Doc hosted in Confluence and linked from the repository README.
+            story_points: 2
+            priority: 3
+
+      # ── Feature 2.2 ──────────────────────────────────────────────────────
+      - title: "Automated Code Quality Gates"
+        description: >
+          Enforce linting, type-checking, and code coverage thresholds on
+          every pull request so that quality regressions are caught before
+          they reach the main branch.
+        tags: "quality, ci, testing"
+        user_stories:
+
+          - title: "Integrate Ruff linter into the PR pipeline"
+            description: >
+              As a developer, I want the Ruff linter running on every pull
+              request so that style and syntax issues are surfaced before code
+              review begins.
+            acceptance_criteria: >
+              PR pipeline fails on any Ruff violation.
+              Existing codebase passes the agreed baseline Ruff configuration.
+              Ruff version pinned in requirements-dev.txt.
+            story_points: 2
+            priority: 1
+
+          - title: "Add mypy type-checking step to the pipeline"
+            description: >
+              As a developer, I want mypy running in the PR pipeline so that
+              type errors are caught before they reach the main branch.
+            acceptance_criteria: >
+              mypy passes (non-strict mode) on the entire repository.
+              All new code added after this story must include type annotations.
+              Pipeline step reports results as inline PR annotations.
+            story_points: 3
+            priority: 2
+
+          - title: "Enforce 80% unit test coverage threshold"
+            description: >
+              As a team lead, I want code coverage measured and gated so that
+              the team can track and maintain regression safety over time.
+            acceptance_criteria: >
+              Pipeline step fails if overall coverage drops below 80%.
+              Coverage badge visible in the repository README.
+              Coverage report published as a pipeline artifact for every PR.
+            story_points: 3
+            priority: 2

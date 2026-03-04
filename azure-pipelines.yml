@@ -1,0 +1,79 @@
+# azure-pipelines.yml
+# ─────────────────────────────────────────────────────────────────────────────
+# Azure DevOps Sprint Automation Pipeline
+#
+# Runs automatically on the 1st and 16th of every month (≈every 15 days).
+# On each run it:
+#   1. Creates a new iteration (sprint) in the ADO project
+#   2. Assigns the iteration to the configured team
+#   3. Creates the standard Epic → Feature → User Story hierarchy
+#      defined in templates/work_items.yaml
+#
+# Prerequisites (one-time setup):
+#   1. In Azure DevOps → Pipelines → Library, create a variable group named
+#      "ADO-Sprint-Automation" containing:
+#
+#        ADO_PAT      (type: Secret)  — Personal Access Token
+#        ADO_ORG      (type: Text)    — Organisation name, e.g. "contoso"
+#        ADO_PROJECT  (type: Text)    — Project name, e.g. "MyProject"
+#        ADO_TEAM     (type: Text)    — Team name, e.g. "MyProject Team"
+#
+#   2. Open the variable group and grant this pipeline access to it
+#      (Pipeline permissions → + Add).
+#
+#   3. PAT minimum scopes required:
+#        - Work Items: Read & Write
+#        - Project and Team: Read
+#        - Iterations: Read & Write  (under the Work Items scope group)
+# ─────────────────────────────────────────────────────────────────────────────
+
+trigger: none   # No CI trigger — only the schedule below fires this pipeline
+
+schedules:
+  - cron: "0 6 1,16 * *"
+    # ┌───── minute (0)
+    # │ ┌─── hour (06:00 UTC — adjust to suit your team's timezone)
+    # │ │ ┌─ day of month: 1st and 16th → approximately every 15 days
+    # │ │ │
+    # 0 6 1,16 * *
+    displayName: "Sprint setup — 1st and 16th of every month"
+    branches:
+      include:
+        - main
+    always: true
+    # always: true is required because this pipeline does not build code.
+    # Without it, Azure Pipelines skips the scheduled run when no source
+    # changes have occurred since the last run.
+
+pool:
+  vmImage: "ubuntu-latest"
+
+variables:
+  - group: "ADO-Sprint-Automation"   # Holds ADO_PAT, ADO_ORG, ADO_PROJECT, ADO_TEAM
+
+steps:
+  - checkout: self
+    displayName: "Checkout repository"
+
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: "3.11"
+      addToPath: true
+    displayName: "Use Python 3.11"
+
+  - script: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: "Install Python dependencies"
+
+  - script: |
+      python scripts/ado_sprint_setup.py
+    displayName: "Run sprint setup script"
+    env:
+      # Secrets from the variable group are passed explicitly as env vars.
+      # $(ADO_PAT) dereferences the secret; it is masked in all pipeline logs.
+      ADO_PAT:       $(ADO_PAT)
+      ADO_ORG:       $(ADO_ORG)
+      ADO_PROJECT:   $(ADO_PROJECT)
+      ADO_TEAM:      $(ADO_TEAM)
+      TEMPLATE_PATH: templates/work_items.yaml
