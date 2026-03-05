@@ -293,6 +293,29 @@ def enable_backlog_levels(
 # ── Iteration API ─────────────────────────────────────────────────────────────
 
 
+def get_existing_iteration(
+    session: requests.Session,
+    org: str,
+    project: str,
+    sprint_name: str,
+) -> str | None:
+    """
+    GET /wit/classificationnodes/iterations/{sprint_name}
+    Returns the iteration GUID if it already exists, otherwise None.
+    """
+    encoded_name = quote(sprint_name, safe="")
+    url = (
+        f"{BASE_URL}/{org}/{project}"
+        f"/_apis/wit/classificationnodes/iterations/{encoded_name}"
+        f"?api-version={API_VERSION}"
+    )
+    response = session.get(url)
+    if response.status_code == 404:
+        return None
+    _raise_for_status(response)
+    return response.json()["identifier"]
+
+
 def create_iteration(
     session: requests.Session,
     org: str,
@@ -304,9 +327,16 @@ def create_iteration(
     """
     POST /wit/classificationnodes/iterations
     Creates a new iteration node directly under the root iteration tree.
+    If an iteration with the same name already exists (e.g. from a previous
+    failed run), returns its existing GUID instead of failing.
     Returns the iteration GUID (not the integer id), which is required by
     the team assignment endpoint.
     """
+    existing_guid = get_existing_iteration(session, org, project, sprint_name)
+    if existing_guid:
+        print(f"      (iteration already exists — reusing GUID: {existing_guid})")
+        return existing_guid
+
     url = (
         f"{BASE_URL}/{org}/{project}"
         f"/_apis/wit/classificationnodes/iterations"
