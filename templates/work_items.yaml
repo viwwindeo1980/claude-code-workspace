@@ -21,10 +21,17 @@
 #   title               → System.Title             (required)
 #   description         → System.Description
 #   tags                → System.Tags              (comma-separated)
-#   area_path           → System.AreaPath          (leave blank for project default)
+#   area_path           → System.AreaPath          (omit = project default area)
 #   story_points        → Microsoft.VSTS.Scheduling.StoryPoints  (User Stories only)
 #   priority            → Microsoft.VSTS.Common.Priority         (1=Critical … 4=Low)
 #   acceptance_criteria → Microsoft.VSTS.Common.AcceptanceCriteria (User Stories only)
+#
+# ── area_path note ───────────────────────────────────────────────────────────
+# area_path fields are intentionally omitted below so all work items are
+# created under the project's default area.  Once the area path hierarchy
+# exists in ADO (Project Settings → Boards → Area), add area_path: entries
+# to individual Epics / Features, e.g.:
+#   area_path: "Upgrade Operations\\Policy and Billing Upgrade\\ORES FY25 Upgrade"
 # ─────────────────────────────────────────────────────────────────────────────
 
 # ── Pipeline-overridable variables ───────────────────────────────────────────
@@ -46,7 +53,6 @@ epics:
       End-to-end upgrade of the {client_name} platform for {fiscal_year}, covering
       planning, analysis, upgrade execution, dry runs, testing, deployment,
       client regression validation, and handover to support.
-    area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
     tags: "{client_name}, {fiscal_year}, upgrade"
     priority: 2
 
@@ -57,7 +63,6 @@ epics:
         description: >
           Pre-upgrade planning activities including client calls, ODW setup,
           schema compare, pipeline runs, and walkthrough preparation.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "Client calls"
@@ -114,7 +119,6 @@ epics:
           Analysis phase covering manuscripts, skins, configurations, database,
           DDA report, and pre-upgrade server validation across Policy, Billing,
           and Producer modules.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "Policy Manuscripts Analysis"
@@ -188,7 +192,6 @@ epics:
         description: >
           Proof-of-concept activities covering pre-upgrade preparation, DG Tool
           report execution, and the analysis phase for the Producer module.
-        area_path: "Upgrade Operations\\Producer  Upgrade\\{client_name} {fiscal_year} Upgrade POC"
         user_stories:
 
           - title: "Pre-Upgrade Activities"
@@ -215,7 +218,6 @@ epics:
           Core upgrade execution covering folder merges, manuscript and skin
           upgrades, configuration upgrades, delta merge, Producer code integration,
           and local sanity testing across Policy, Billing, and Producer modules.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "Client Repo Check-in"
@@ -332,7 +334,6 @@ epics:
           Dry run execution across all modules (Policy, Billing, Producer,
           User Admin, Additional) using both DCT and Client packs to validate
           the upgrade process end-to-end before production deployment.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "Policy - Dry Run - DCT Pack"
@@ -395,7 +396,6 @@ epics:
           Formal test and triage passes including structured test execution,
           defect identification, and defect fix cycles leading to production
           readiness sign-off.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "{client_name} {fiscal_year} Test and Triage - Pass 1"
@@ -415,7 +415,6 @@ epics:
         description: >
           Production deployment activities including sprint code merge and
           hands-on deployment support to ensure a successful go-live.
-        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
           - title: "{client_name} Sprint Merge"
@@ -435,7 +434,6 @@ epics:
         description: >
           Client regression testing following production deployment to confirm
           that no pre-existing functionality has been broken by the upgrade.
-        area_path: "Upgrade Operations\\Strivers"
         user_stories:
 
           - title: "CR - Defect Fixing"
@@ -450,7 +448,6 @@ epics:
           Formal handover of the upgraded {client_name} environment to the client
           support team, including documentation, knowledge transfer, and
           early-life support.
-        area_path: "Upgrade Operations\\Strivers"
         user_stories:
 
           - title: "Handover & Support"
