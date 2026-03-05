@@ -79,7 +79,8 @@ def main() -> None:
     print(f"Organisation : {config['org']}")
     print(f"Project      : {config['project']}")
     print(f"Team         : {config['team']}")
-    print(f"Sprint       : {sprint_name}  ({start_date} → {end_date})\n")
+    print(f"Sprint       : {sprint_name}  ({start_date} → {end_date})")
+    print(f"Client       : {os.environ.get('CLIENT_NAME', '(from yaml variables block)')}\n")
 
     print("[1/4] Enabling Epic & Feature backlog levels for team...")
     enable_backlog_levels(session, config["org"], config["project"], config["team"])
@@ -143,7 +144,13 @@ def load_config() -> dict:
 
 def load_template(path: str) -> dict:
     """
-    Parse the YAML template file. Exits with code 3 on any file/parse error.
+    Parse the YAML template file and resolve any {variable} placeholders.
+
+    Variables are sourced from two places (env var wins over yaml default):
+      yaml variables block  →  client_name: "ORES", fiscal_year: "FY25"
+      pipeline env vars     →  CLIENT_NAME=Acme, FISCAL_YEAR=FY26
+
+    Exits with code 3 on any file/parse error.
     """
     try:
         with open(path, "r", encoding="utf-8") as fh:
@@ -162,7 +169,40 @@ def load_template(path: str) -> dict:
         )
         sys.exit(3)
 
+    # Build variable dict: start with yaml defaults, then overlay env vars.
+    variables: dict = dict(data.pop("variables", {}) or {})
+    for var_name in list(variables):
+        env_val = os.environ.get(var_name.upper(), "").strip()
+        if env_val:
+            variables[var_name] = env_val
+
+    if variables:
+        print(f"      Variables: { {k: v for k, v in variables.items()} }")
+        data = _resolve_variables(data, variables)
+
     return data
+
+
+def _resolve_variables(obj, variables: dict):
+    """
+    Recursively walk *obj* (dict / list / str) and expand every
+    {variable_name} placeholder using *variables*.
+    Non-string scalars (int, float, bool, None) are returned unchanged.
+    """
+    if isinstance(obj, dict):
+        return {k: _resolve_variables(v, variables) for k, v in obj.items()}
+    if isinstance(obj, list):
+        return [_resolve_variables(item, variables) for item in obj]
+    if isinstance(obj, str):
+        try:
+            return obj.format_map(variables)
+        except KeyError as exc:
+            print(
+                f"WARNING: Unknown variable {exc} in template string: {obj!r}",
+                file=sys.stderr,
+            )
+            return obj
+    return obj
 
 
 # ── Authentication ────────────────────────────────────────────────────────────

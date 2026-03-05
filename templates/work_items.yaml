@@ -2,8 +2,20 @@
 # ─────────────────────────────────────────────────────────────────────────────
 # Declarative hierarchy template: Epic → Feature → User Story
 #
+# Source: Azure DevOps — DCOD-Upgrade / Upgrade Operations
+#         Epic 36543 "{client_name} Upgrade {fiscal_year}"
+#
 # The script reads this file on every run and creates the work items in ADO.
 # Edit this file to change what gets created each sprint.
+#
+# ── Variable substitution ────────────────────────────────────────────────────
+# Any {variable_name} placeholder in a string value is replaced at runtime.
+# Values come from two sources (pipeline env var wins over yaml default):
+#
+#   yaml default        pipeline env var    example
+#   ──────────────────  ──────────────────  ─────────────────────
+#   client_name: ORES   CLIENT_NAME         CLIENT_NAME=Acme
+#   fiscal_year: FY25   FISCAL_YEAR         FISCAL_YEAR=FY26
 #
 # Field reference:
 #   title               → System.Title             (required)
@@ -15,196 +27,434 @@
 #   acceptance_criteria → Microsoft.VSTS.Common.AcceptanceCriteria (User Stories only)
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ── Pipeline-overridable variables ───────────────────────────────────────────
+# Change these defaults here, or pass CLIENT_NAME / FISCAL_YEAR as pipeline
+# variables to override without editing this file.
+variables:
+  client_name: "ORES"
+  fiscal_year: "FY25"
+
 sprints:
-  name_prefix: "Sprint"   # Final name becomes e.g. "Sprint 2026-03-04"
-  duration_days: 15       # Must match the pipeline schedule period
+  name_prefix: "{client_name} Sprint"   # Final name becomes e.g. "ORES Sprint 2026-03-04"
+  duration_days: 15                     # Must match the pipeline schedule period
 
 epics:
 
-  # ── Epic 1 ─────────────────────────────────────────────────────────────────
-  - title: "Platform Modernisation"
+  # ── Epic ────────────────────────────────────────────────────────────────────
+  - title: "{client_name} Upgrade {fiscal_year}"
     description: >
-      Migrate legacy services to cloud-native architecture, improving
-      reliability, scalability, and operational efficiency across all regions.
-    area_path: ""
-    tags: "platform, cloud, migration"
+      End-to-end upgrade of the {client_name} platform for {fiscal_year}, covering
+      planning, analysis, upgrade execution, dry runs, testing, deployment,
+      client regression validation, and handover to support.
+    area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
+    tags: "{client_name}, {fiscal_year}, upgrade"
+    priority: 2
 
     features:
 
-      # ── Feature 1.1 ──────────────────────────────────────────────────────
-      - title: "API Gateway Migration"
+      # ── Feature: Planning ────────────────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} - Planning"
         description: >
-          Replace the existing NGINX reverse proxy with Azure API Management
-          to gain richer policy controls, analytics, and a developer portal.
-        tags: "api, gateway, apim"
+          Pre-upgrade planning activities including client calls, ODW setup,
+          schema compare, pipeline runs, and walkthrough preparation.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
-          - title: "Document existing NGINX routing rules"
+          - title: "Client calls"
             description: >
-              As a developer, I want all current routing rules catalogued so
-              that no traffic path is missed during migration.
-            acceptance_criteria: >
-              All routes documented in Confluence with owner sign-off.
-              Document reviewed by at least two backend engineers.
-            story_points: 3
+              Conduct planning and alignment calls with the client to confirm
+              upgrade scope, timelines, and responsibilities.
             priority: 2
 
-          - title: "Provision APIM instance in staging"
+          - title: "Automation Pipeline run for local ODWs"
             description: >
-              As a DevOps engineer, I want an Azure API Management instance
-              running in staging so that I can validate policies safely before
-              any production cutover.
-            acceptance_criteria: >
-              APIM instance responds on the staging endpoint.
-              Health probe returns HTTP 200. Terraform plan committed to repo.
-            story_points: 5
-            priority: 1
+              Execute the automation pipeline against local ODW environments to
+              validate baseline behaviour before upgrade activities begin.
+            priority: 2
 
-          - title: "Implement OAuth2 policy on APIM"
+          - title: "Internal meetings"
             description: >
-              As a security engineer, I want OAuth2 token validation enforced
-              at the gateway so that unauthenticated traffic never reaches
-              backend services.
-            acceptance_criteria: >
-              Token validation policy active on all product APIs.
-              Requests without a valid bearer token return HTTP 401.
-              Integration test suite passes in staging.
-            story_points: 5
-            priority: 1
+              Hold internal team meetings to align on upgrade plan, task
+              ownership, and risk items.
+            priority: 2
 
-      # ── Feature 1.2 ──────────────────────────────────────────────────────
-      - title: "Container Registry Consolidation"
+          - title: "Pre-Upgrade Walkthrough session"
+            description: >
+              Conduct a formal pre-upgrade walkthrough session with all
+              stakeholders to review the upgrade plan and sign off on readiness.
+            priority: 2
+
+          - title: "Producer - Compare Pre Upgrade and Old Base folder structure and files"
+            description: >
+              Compare the Producer pre-upgrade folder structure and file contents
+              against the old base to identify delta items before upgrade.
+            priority: 2
+
+          - title: "Preupgrade/weekly walkthrough Deck Preparation"
+            description: >
+              Prepare the pre-upgrade and weekly walkthrough presentation deck
+              for stakeholder review.
+            priority: 2
+
+          - title: "ODW setup"
+            description: >
+              Provision and configure the Online Development Workspaces (ODWs)
+              required for the upgrade process.
+            priority: 2
+
+          - title: "Schema Compare Report"
+            description: >
+              Generate and review the database schema compare report to identify
+              structural changes between the base and client versions.
+            priority: 2
+
+      # ── Feature: Analysis ───────────────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} - Analysis"
         description: >
-          Merge three legacy Azure Container Registry instances into a single
-          geo-replicated registry to reduce cost and eliminate image drift.
-        tags: "containers, acr, devops"
+          Analysis phase covering manuscripts, skins, configurations, database,
+          DDA report, and pre-upgrade server validation across Policy, Billing,
+          and Producer modules.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
-          - title: "Audit all images across existing registries"
+          - title: "Policy Manuscripts Analysis"
             description: >
-              As a DevOps engineer, I want a full image inventory so that no
-              image is orphaned or lost during the consolidation.
-            acceptance_criteria: >
-              Spreadsheet listing: image name, all tags, last-pull date,
-              owning team. Reviewed and signed off by all team leads.
-            story_points: 2
+              Analyse Policy manuscripts to identify customisations, overrides,
+              and conflicts that must be resolved during the upgrade.
             priority: 2
 
-          - title: "Configure geo-replication for consolidated ACR"
+          - title: "Billing Manuscripts Analysis"
             description: >
-              As an SRE, I want geo-replication enabled on the target registry
-              so that image pulls are low-latency in all production regions.
-            acceptance_criteria: >
-              Replication confirmed to East US 2 and West Europe in the portal.
-              Replication health status shows "Ready" for both replicas.
-            story_points: 3
-            priority: 1
+              Analyse Billing manuscripts to identify customisations, overrides,
+              and conflicts that must be resolved during the upgrade.
+            priority: 2
 
-          - title: "Migrate CI/CD pipelines to use consolidated ACR"
+          - title: "Policy Skins Analysis"
             description: >
-              As a pipeline author, I want all build and deploy pipelines
-              updated to reference the new ACR endpoint so that the legacy
-              registries can be decommissioned.
-            acceptance_criteria: >
-              Zero pipeline definitions referencing old ACR endpoints.
-              All pipelines pass smoke tests post-cutover.
-              Old registries locked (no push access) for two weeks before deletion.
-            story_points: 5
-            priority: 1
+              Analyse Policy skin files to document client-specific UI
+              customisations and assess upgrade impact.
+            priority: 2
 
-  # ── Epic 2 ─────────────────────────────────────────────────────────────────
-  - title: "Developer Experience"
-    description: >
-      Reduce friction in the inner development loop for all engineering teams
-      through standardised environments, automated quality gates, and improved
-      onboarding documentation.
-    area_path: ""
-    tags: "dx, tooling, developer-productivity"
+          - title: "Billing Skins Analysis"
+            description: >
+              Analyse Billing skin files to document client-specific UI
+              customisations and assess upgrade impact.
+            priority: 2
 
-    features:
+          - title: "Policy Configuration Analysis"
+            description: >
+              Review Policy configuration settings and assess changes required
+              to align the client environment with the target upgrade version.
+            priority: 2
 
-      # ── Feature 2.1 ──────────────────────────────────────────────────────
-      - title: "Unified Local Development Environment"
+          - title: "Billing Configuration Analysis"
+            description: >
+              Review Billing configuration settings and assess changes required
+              to align the client environment with the target upgrade version.
+            priority: 2
+
+          - title: "Producer - Policy Manuscript Analysis"
+            description: >
+              Analyse Producer-side Policy manuscripts for customisations and
+              merge conflicts ahead of upgrade execution.
+            priority: 2
+
+          - title: "Base repo Cleanup"
+            description: >
+              Clean up the base repository to remove stale branches, obsolete
+              artifacts, and unneeded configuration before upgrade begins.
+            priority: 2
+
+          - title: "DDA Report Preparation"
+            description: >
+              Prepare the Detailed Design Analysis (DDA) report summarising
+              findings from the analysis phase for client review and sign-off.
+            priority: 2
+
+          - title: "Validate PreUpgrade Server"
+            description: >
+              Validate that the pre-upgrade server environment is correctly
+              configured and stable before commencing upgrade activities.
+            priority: 2
+
+          - title: "Database analysis"
+            description: >
+              Perform a comprehensive database analysis to assess schema
+              differences, stored procedures, and data migration requirements.
+            priority: 2
+
+      # ── Feature: POC ────────────────────────────────────────────────────────
+      - title: "POC : Pre-upgrade & Upgrade Activities"
         description: >
-          Ship a devcontainer configuration that mirrors the production service
-          topology so every developer has a consistent, cloud-free local setup.
-        tags: "devcontainer, docker, onboarding"
+          Proof-of-concept activities covering pre-upgrade preparation, DG Tool
+          report execution, and the analysis phase for the Producer module.
+        area_path: "Upgrade Operations\\Producer  Upgrade\\{client_name} {fiscal_year} Upgrade POC"
         user_stories:
 
-          - title: "Define devcontainer base image"
+          - title: "Pre-Upgrade Activities"
             description: >
-              As a developer, I want a standardised base image for the
-              devcontainer so that environment drift between team members is
-              eliminated.
-            acceptance_criteria: >
-              devcontainer.json committed to the repository root.
-              All current team members able to open the repo in VS Code Dev
-              Containers without manual configuration.
-            story_points: 2
+              Execute all pre-upgrade preparation tasks on the POC environment
+              including environment setup and baseline validation.
             priority: 2
 
-          - title: "Wire local services with docker-compose"
+          - title: "Prep work to Run DG Tool Report"
             description: >
-              As a developer, I want docker-compose to orchestrate all local
-              service dependencies so that I can run the full integration test
-              suite without any cloud access.
-            acceptance_criteria: >
-              `docker-compose up` brings up all dependent services within 60 s.
-              Full unit test suite passes in an offline environment.
-              No hardcoded cloud credentials required.
-            story_points: 5
-            priority: 1
+              Perform preparatory work required to execute the DG Tool report
+              against the POC environment.
+            priority: 2
 
-          - title: "Write developer onboarding documentation"
+          - title: "Analysis Phase"
             description: >
-              As a new joiner, I want step-by-step environment setup docs so
-              that I am fully productive within my first working day.
-            acceptance_criteria: >
-              Documentation reviewed by two engineers who followed it cold and
-              reached a working environment without assistance.
-              Doc hosted in Confluence and linked from the repository README.
-            story_points: 2
-            priority: 3
+              Conduct the full analysis phase for the POC upgrade including
+              manuscript, skin, and configuration review for the Producer module.
+            priority: 2
 
-      # ── Feature 2.2 ──────────────────────────────────────────────────────
-      - title: "Automated Code Quality Gates"
+      # ── Feature: Upgrade and Local Sanity ───────────────────────────────────
+      - title: "{client_name} {fiscal_year} - Upgrade and Local Sanity"
         description: >
-          Enforce linting, type-checking, and code coverage thresholds on
-          every pull request so that quality regressions are caught before
-          they reach the main branch.
-        tags: "quality, ci, testing"
+          Core upgrade execution covering folder merges, manuscript and skin
+          upgrades, configuration upgrades, delta merge, Producer code integration,
+          and local sanity testing across Policy, Billing, and Producer modules.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
         user_stories:
 
-          - title: "Integrate Ruff linter into the PR pipeline"
+          - title: "Client Repo Check-in"
             description: >
-              As a developer, I want the Ruff linter running on every pull
-              request so that style and syntax issues are surfaced before code
-              review begins.
-            acceptance_criteria: >
-              PR pipeline fails on any Ruff violation.
-              Existing codebase passes the agreed baseline Ruff configuration.
-              Ruff version pinned in requirements-dev.txt.
-            story_points: 2
-            priority: 1
-
-          - title: "Add mypy type-checking step to the pipeline"
-            description: >
-              As a developer, I want mypy running in the PR pipeline so that
-              type errors are caught before they reach the main branch.
-            acceptance_criteria: >
-              mypy passes (non-strict mode) on the entire repository.
-              All new code added after this story must include type annotations.
-              Pipeline step reports results as inline PR annotations.
-            story_points: 3
+              Check in all client repository changes required to initiate the
+              upgrade, ensuring source control is consistent before merging begins.
             priority: 2
 
-          - title: "Enforce 80% unit test coverage threshold"
+          - title: "Policy Parent Folder Merge"
             description: >
-              As a team lead, I want code coverage measured and gated so that
-              the team can track and maintain regression safety over time.
-            acceptance_criteria: >
-              Pipeline step fails if overall coverage drops below 80%.
-              Coverage badge visible in the repository README.
-              Coverage report published as a pipeline artifact for every PR.
-            story_points: 3
+              Merge the Policy parent folder from the base upgrade version into
+              the client repository, resolving all conflicts.
+            priority: 2
+
+          - title: "Billing Parent Folder Merge"
+            description: >
+              Merge the Billing parent folder from the base upgrade version into
+              the client repository, resolving all conflicts.
+            priority: 2
+
+          - title: "Policy Manuscripts upgrade"
+            description: >
+              Apply all Policy manuscript changes identified during analysis,
+              merging base upgrades with client customisations.
+            priority: 2
+
+          - title: "Billing Manuscripts upgrade"
+            description: >
+              Apply all Billing manuscript changes identified during analysis,
+              merging base upgrades with client customisations.
+            priority: 2
+
+          - title: "Policy Configurations Upgrade"
+            description: >
+              Upgrade Policy configuration files to align with the target version
+              while preserving client-specific settings.
+            priority: 2
+
+          - title: "Billing Configurations Upgrade"
+            description: >
+              Upgrade Billing configuration files to align with the target version
+              while preserving client-specific settings.
+            priority: 2
+
+          - title: "Policy Skins Upgrade"
+            description: >
+              Upgrade Policy skin files, merging base changes with client UI
+              customisations and validating rendering post-merge.
+            priority: 2
+
+          - title: "Billing Skins Upgrade"
+            description: >
+              Upgrade Billing skin files, merging base changes with client UI
+              customisations and validating rendering post-merge.
+            priority: 2
+
+          - title: "Delta Merge"
+            description: >
+              Execute the delta merge pass to incorporate incremental base changes
+              released after the initial upgrade snapshot was taken.
+            priority: 2
+
+          - title: "Producer 1.x on Upgrade Lab"
+            description: >
+              Deploy and validate Producer 1.x code on the upgrade lab environment
+              to confirm compatibility with the upgraded platform.
+            priority: 2
+
+          - title: "Producer 2.x Code Merge"
+            description: >
+              Merge Producer 2.x customisations into the upgraded codebase and
+              verify functional parity on the upgrade lab.
+            priority: 2
+
+          - title: "Analysis Feedback"
+            description: >
+              Incorporate feedback received from the client analysis review into
+              the upgrade deliverables before local sanity testing.
+            priority: 2
+
+          - title: "Setup Preupgrade ODW"
+            description: >
+              Set up the pre-upgrade ODW snapshot environment required for
+              side-by-side comparison during sanity testing.
+            priority: 2
+
+          - title: "ODW Triage"
+            description: >
+              Triage ODW issues identified during local testing and resolve or
+              escalate defects before dry run.
+            priority: 2
+
+          - title: "Adhoc Scenario Test on Producer 2x code"
+            description: >
+              Run ad-hoc scenario tests against the Producer 2.x merged code to
+              validate key business workflows before formal dry run.
+            priority: 2
+
+          - title: "Policy Sanity"
+            description: >
+              Execute the Policy sanity test suite on the upgraded local
+              environment to confirm core policy workflows are functioning.
+            priority: 2
+
+          - title: "Billing Sanity"
+            description: >
+              Execute the Billing sanity test suite on the upgraded local
+              environment to confirm core billing workflows are functioning.
+            priority: 2
+
+      # ── Feature: Dry Run ────────────────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} Dry Run"
+        description: >
+          Dry run execution across all modules (Policy, Billing, Producer,
+          User Admin, Additional) using both DCT and Client packs to validate
+          the upgrade process end-to-end before production deployment.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
+        user_stories:
+
+          - title: "Policy - Dry Run - DCT Pack"
+            description: >
+              Execute the Policy dry run using the DCT deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Policy - Dry Run - Client Pack"
+            description: >
+              Execute the Policy dry run using the Client deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Policy/Producer - Dry Run - Client Pack"
+            description: >
+              Execute a combined Policy/Producer dry run using the Client
+              deployment pack to validate cross-module behaviour.
+            priority: 2
+
+          - title: "Billing - Dry Run - DCT Pack"
+            description: >
+              Execute the Billing dry run using the DCT deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Billing - Dry Run - Client Pack"
+            description: >
+              Execute the Billing dry run using the Client deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Producer - Dry Run - DCT Pack"
+            description: >
+              Execute the Producer dry run using the DCT deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Producer - Dry Run - Client Pack"
+            description: >
+              Execute the Producer dry run using the Client deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "User Admin - Dry Run - DCT Pack"
+            description: >
+              Execute the User Admin dry run using the DCT deployment pack and
+              record outcomes, issues, and timings.
+            priority: 2
+
+          - title: "Additional - Dry Run - DCT Pack"
+            description: >
+              Execute the Additional components dry run using the DCT deployment
+              pack and record outcomes, issues, and timings.
+            priority: 2
+
+      # ── Feature: Test and Triage ─────────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} Test and Triage"
+        description: >
+          Formal test and triage passes including structured test execution,
+          defect identification, and defect fix cycles leading to production
+          readiness sign-off.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
+        user_stories:
+
+          - title: "{client_name} {fiscal_year} Test and Triage - Pass 1"
+            description: >
+              Execute the first formal test pass covering all in-scope modules
+              and workflows, logging defects for triage.
+            priority: 2
+
+          - title: "{client_name} {fiscal_year} Test and Triage - Pass 1 - Defect Fixes"
+            description: >
+              Resolve defects identified during Test and Triage Pass 1 and
+              re-validate affected areas before the next test pass.
+            priority: 2
+
+      # ── Feature: Deployment ──────────────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} - Deployment"
+        description: >
+          Production deployment activities including sprint code merge and
+          hands-on deployment support to ensure a successful go-live.
+        area_path: "Upgrade Operations\\Policy and Billing Upgrade\\{client_name} {fiscal_year} Upgrade"
+        user_stories:
+
+          - title: "{client_name} Sprint Merge"
+            description: >
+              Merge all sprint code changes into the release branch ready
+              for production deployment.
+            priority: 2
+
+          - title: "Deployment Support"
+            description: >
+              Provide active support during the production deployment window,
+              monitoring progress and resolving issues in real time.
+            priority: 2
+
+      # ── Feature: Client Regression ───────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} Client Regression"
+        description: >
+          Client regression testing following production deployment to confirm
+          that no pre-existing functionality has been broken by the upgrade.
+        area_path: "Upgrade Operations\\Strivers"
+        user_stories:
+
+          - title: "CR - Defect Fixing"
+            description: >
+              Investigate and fix defects raised by the client during the
+              regression testing phase post-deployment.
+            priority: 2
+
+      # ── Feature: Handover & Support ──────────────────────────────────────────
+      - title: "{client_name} {fiscal_year} Handover & Support"
+        description: >
+          Formal handover of the upgraded {client_name} environment to the client
+          support team, including documentation, knowledge transfer, and
+          early-life support.
+        area_path: "Upgrade Operations\\Strivers"
+        user_stories:
+
+          - title: "Handover & Support"
+            description: >
+              Complete the formal handover process including knowledge transfer
+              sessions, handover documentation, and early-life support coverage.
             priority: 2

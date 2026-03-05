@@ -50,6 +50,10 @@ pool:
 
 variables:
   - group: "ADO-Sprint-Automation"   # Holds ADO_PAT, ADO_ORG, ADO_PROJECT, ADO_TEAM
+  - name: CLIENT_NAME
+    value: "ORES"                    # Override per-run or in the variable group
+  - name: FISCAL_YEAR
+    value: "FY25"                    # Override per-run or in the variable group
 
 steps:
   - checkout: self
@@ -67,6 +71,10 @@ steps:
     displayName: "Install Python dependencies"
 
   - script: |
+      pytest tests/ -v
+    displayName: "Run unit tests"
+
+  - script: |
       python scripts/ado_sprint_setup.py
     displayName: "Run sprint setup script"
     env:
@@ -77,3 +85,5 @@ steps:
       ADO_PROJECT:   $(ADO_PROJECT)
       ADO_TEAM:      $(ADO_TEAM)
       TEMPLATE_PATH: templates/work_items.yaml
+      CLIENT_NAME:   $(CLIENT_NAME)
+      FISCAL_YEAR:   $(FISCAL_YEAR)
