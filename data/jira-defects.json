@@ -13,7 +13,11 @@
     "resolved": "2025-11-27",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Environmental",
+    "fix_type": "Config File Fix",
+    "rca_category": null,
+    "resolution_comments": "Moved to Sub Task"
   },
   {
     "id": 45125,
@@ -31,7 +35,11 @@
     "labels": [
       "Tier 3 Required"
     ],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Closed by executing script provided from DEV Eng in ticket: https://riskcontroltech.atlassian.net/browse/ZEN-2765"
   },
   {
     "id": 45133,
@@ -47,7 +55,11 @@
     "resolved": "2025-12-05",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": "Base Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Solved by changing the query in the database, details are described in the comment."
   },
   {
     "id": 45374,
@@ -63,7 +75,11 @@
     "resolved": "2025-12-19",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Added missing ExtFld13 and ExtFld14 in DB, necessary for displaying pictures."
   },
   {
     "id": 45375,
@@ -79,7 +95,11 @@
     "resolved": "2025-12-10",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Deployment",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Updated field Recommendation title in DB. Value set to 1 as expected in code."
   },
   {
     "id": 45377,
@@ -95,7 +115,11 @@
     "resolved": "2026-02-12",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Environmental",
+    "fix_type": "Infra Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "This problem was solved by resizing the server."
   },
   {
     "id": 45538,
@@ -111,7 +135,11 @@
     "resolved": "2025-12-12",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 45681,
@@ -129,7 +157,11 @@
     "labels": [
       "ResolvedWithLatestRelease"
     ],
-    "comments": []
+    "comments": [],
+    "issue_type": "Base",
+    "fix_type": "Code Fix",
+    "rca_category": null,
+    "resolution_comments": "A fix for this problem is in version 5.2. For fix client need to upgrade environment to v5.2"
   },
   {
     "id": 46065,
@@ -147,7 +179,11 @@
     "labels": [
       "Tier 3 Required"
     ],
-    "comments": []
+    "comments": [],
+    "issue_type": "Upgrade",
+    "fix_type": "Config File Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "Missing files."
   },
   {
     "id": 46496,
@@ -163,7 +199,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 47005,
@@ -179,7 +219,11 @@
     "resolved": "2026-01-20",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "This is not an issue"
   },
   {
     "id": 47008,
@@ -195,7 +239,11 @@
     "resolved": "2026-02-27",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Base",
+    "fix_type": "Base Fix",
+    "rca_category": "Base Changes",
+    "resolution_comments": "Resolved by change of settings, on 13.02.2026. has been confirmed."
   },
   {
     "id": 47033,
@@ -211,7 +259,11 @@
     "resolved": "2026-02-04",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": "Config File Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "Changes in SAML.config files."
   },
   {
     "id": 47160,
@@ -227,7 +279,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47194,
@@ -243,7 +299,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47312,
@@ -259,7 +319,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47344,
@@ -275,7 +339,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47345,
@@ -291,7 +359,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Base",
+    "fix_type": "Base Fix",
+    "rca_category": "Base Changes",
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 47518,
@@ -307,7 +379,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47520,
@@ -323,7 +399,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 47521,
@@ -339,7 +419,11 @@
     "resolved": "2026-02-02",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Changes in Database"
   },
   {
     "id": 47697,
@@ -355,7 +439,11 @@
     "resolved": "2026-03-12",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Base",
+    "fix_type": "Data and Code Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "The bug is resolved, still there is a need for opening a bug that would be included in new release."
   },
   {
     "id": 47698,
@@ -371,7 +459,11 @@
     "resolved": "2026-02-27",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": "Base Fix",
+    "rca_category": "Base Changes",
+    "resolution_comments": "Resolved by change of settings, on 13.02.2026. has been confirmed."
   },
   {
     "id": 47743,
@@ -387,7 +479,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47744,
@@ -403,7 +499,11 @@
     "resolved": "2026-03-09",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Deployment",
+    "fix_type": "Config File Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "Change in web.config file."
   },
   {
     "id": 47806,
@@ -419,7 +519,11 @@
     "resolved": "2026-02-06",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Custom manuscript changed",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Changed part in DB procedure: GetFormsWithMissingMandatoryFields and executed again on DB."
   },
   {
     "id": 47816,
@@ -435,7 +539,11 @@
     "resolved": "2026-02-06",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Config File Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "Bad values in config file"
   },
   {
     "id": 47854,
@@ -451,7 +559,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 47917,
@@ -467,7 +579,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Base",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 47966,
@@ -483,7 +599,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 47967,
@@ -499,7 +619,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47968,
@@ -515,7 +639,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 47969,
@@ -531,7 +659,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48074,
@@ -547,7 +679,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48075,
@@ -563,7 +699,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48120,
@@ -579,7 +719,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48121,
@@ -595,7 +739,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48179,
@@ -611,7 +759,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48180,
@@ -627,7 +779,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48181,
@@ -643,7 +799,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48237,
@@ -659,7 +819,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Zen ticket to this issue: https://riskcontroltech.atlassian.net/browse/ZEN-2795"
   },
   {
     "id": 48238,
@@ -675,7 +839,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Known Issue",
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48239,
@@ -691,7 +859,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48240,
@@ -707,7 +879,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48284,
@@ -723,7 +899,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48301,
@@ -739,7 +919,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 48302,
@@ -755,7 +939,11 @@
     "resolved": "2026-02-25",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "Executed script ZEN-2548_v4 and retested."
   },
   {
     "id": 48354,
@@ -771,7 +959,11 @@
     "resolved": "2026-03-12",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Environmental",
+    "fix_type": "Config File Fix",
+    "rca_category": "Missing config changes/entries",
+    "resolution_comments": "checked the captions on both STG and Prod and observed the captions on Prod was updated Manually by someone hence it is not going to match with STG also, devops team never change captions manually they get populated using Octopus now copper point was upgraded using Jenkins so there no chance that will changed after the upgrade. Please check the CustomOptions. BSD file from which Captions get loaded before and after the Upgrade."
   },
   {
     "id": 48362,
@@ -787,7 +979,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48363,
@@ -803,7 +999,11 @@
     "resolved": "2026-03-13",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Custom",
+    "fix_type": "Data Fix",
+    "rca_category": "Database object issues",
+    "resolution_comments": "This issue has occurred because of TA or an user added a field on table OpenClosedRecFields. the FieldName is duplicate Support team needs to be aware that manual adding fields in database can cause error such as this. check below screenshot showing duplicate fieldName now I have renamed to ExtFld22 ensuring its uniqueness. This change successfully restored the PDF letter and Run Report generation functionality."
   },
   {
     "id": 48364,
@@ -819,7 +1019,11 @@
     "resolved": "2026-02-24",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Yesterday for the whole day it wasn't working. Today i have retested it and its working"
   },
   {
     "id": 48365,
@@ -835,7 +1039,11 @@
     "resolved": "2026-02-27",
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": "Environmental",
+    "fix_type": "Deployment Fix",
+    "rca_category": null,
+    "resolution_comments": "Retarted JAWS app pool."
   },
   {
     "id": 48421,
@@ -851,7 +1059,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48422,
@@ -867,7 +1079,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 48483,
@@ -883,7 +1099,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48484,
@@ -899,7 +1119,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48486,
@@ -915,7 +1139,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48487,
@@ -931,7 +1159,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 48531,
@@ -947,7 +1179,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48534,
@@ -963,7 +1199,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 48535,
@@ -979,7 +1219,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48550,
@@ -995,7 +1239,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48934,
@@ -1011,7 +1259,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48940,
@@ -1027,7 +1279,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48941,
@@ -1043,7 +1299,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48962,
@@ -1059,7 +1319,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48991,
@@ -1075,7 +1339,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 48997,
@@ -1091,7 +1359,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 48998,
@@ -1107,7 +1379,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49007,
@@ -1123,7 +1399,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 49053,
@@ -1139,7 +1419,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 49270,
@@ -1155,7 +1439,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49303,
@@ -1171,7 +1459,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49355,
@@ -1187,7 +1479,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 49364,
@@ -1203,7 +1499,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "Bug linked to #49240 to ensure ongoing tracking and resolution."
   },
   {
     "id": 49365,
@@ -1219,7 +1519,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49366,
@@ -1235,7 +1539,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49368,
@@ -1251,7 +1559,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 49397,
@@ -1267,7 +1579,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   },
   {
     "id": 49408,
@@ -1283,7 +1599,11 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": "The bug is associated with issue #49238 for ongoing tracking."
   },
   {
     "id": 49480,
@@ -1299,6 +1619,10 @@
     "resolved": null,
     "reopened": false,
     "labels": [],
-    "comments": []
+    "comments": [],
+    "issue_type": null,
+    "fix_type": null,
+    "rca_category": null,
+    "resolution_comments": null
   }
 ]
