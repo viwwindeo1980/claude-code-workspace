@@ -7,6 +7,7 @@ import { clusterDefects } from "./lib/clustering.js";
 import { generateRCA } from "./lib/rca-engine.js";
 import { buildCorpus, cosineSimilarity, topTerms } from "./lib/tfidf.js";
 import { testConnection as testZenDesk, isZenDeskConfigured, collectZenDeskIds } from "./lib/zendesk.js";
+import { triggerSync, startWeeklyScheduler, getLastSyncStatus } from "./lib/ado-sync.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -16,11 +17,31 @@ const rawDefects = JSON.parse(
 );
 
 console.log(`Loaded ${rawDefects.length} defects — clustering...`);
-const { defects, clusters } = clusterDefects(rawDefects);
+let { defects, clusters } = clusterDefects(rawDefects);
 console.log(`Clustered into ${clusters.length} groups`);
 
 // RCA cache: cluster.id → rca object
 const rcaCache = new Map();
+
+// ─── Reload data in-memory after a sync ──────────────────────────────────────
+function reloadAfterSync(syncResult) {
+  try {
+    const fresh = JSON.parse(readFileSync(join(__dirname, "data", "jira-defects.json"), "utf-8"));
+    const reclustered = clusterDefects(fresh);
+    // Mutate the shared arrays in-place so existing route closures see new data
+    defects.length = 0;
+    defects.push(...reclustered.defects);
+    clusters.length = 0;
+    clusters.push(...reclustered.clusters);
+    rcaCache.clear();
+    console.log(`[ADO Sync] In-memory data reloaded: ${defects.length} defects, ${clusters.length} clusters`);
+  } catch (err) {
+    console.error("[ADO Sync] Failed to reload in-memory data:", err.message);
+  }
+}
+
+// ─── Start weekly Monday scheduler ───────────────────────────────────────────
+startWeeklyScheduler(reloadAfterSync);
 
 // ─── Express app ─────────────────────────────────────────────────────────────
 const app = express();
@@ -60,6 +81,22 @@ app.get("/api/zendesk/status", async (req, res) => {
     defects_with_zen_refs: idMap.size,
     zen_ticket_ids: [...idMap.keys()],
   });
+});
+
+// ─── GET /api/sync/status ─────────────────────────────────────────────────────
+app.get("/api/sync/status", (req, res) => {
+  res.json(getLastSyncStatus());
+});
+
+// ─── POST /api/sync ───────────────────────────────────────────────────────────
+app.post("/api/sync", async (req, res) => {
+  const status = getLastSyncStatus();
+  if (status.sync_in_progress) {
+    return res.status(409).json({ error: "Sync already in progress" });
+  }
+  // Run async — respond immediately with accepted status
+  res.status(202).json({ message: "Sync started", started_at: new Date().toISOString() });
+  await triggerSync(reloadAfterSync);
 });
 
 // ─── GET /api/stats ───────────────────────────────────────────────────────────
@@ -337,8 +374,11 @@ app.listen(PORT, () => {
     : process.env.ANTHROPIC_API_KEY
       ? "Claude API"
       : "Template Engine (offline)";
+  const adoAuth = process.env.ADO_PAT ? "PAT" : "Azure CLI (token)";
+  const syncStatus = getLastSyncStatus();
   console.log(`\n RCA POC running on http://localhost:${PORT}`);
   console.log(` RCA Mode: ${mode}`);
   console.log(` Defects: ${defects.length}  |  Clusters: ${clusters.length}`);
-  console.log(` Top cluster: "${clusters[0]?.label}" (score: ${clusters[0]?.recurrence_score})\n`);
+  console.log(` Top cluster: "${clusters[0]?.label}" (score: ${clusters[0]?.recurrence_score})`);
+  console.log(` ADO Sync: weekly Monday | Auth: ${adoAuth} | Next: ${syncStatus.next_sync}\n`);
 });
