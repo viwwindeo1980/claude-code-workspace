@@ -1,0 +1,875 @@
+[
+  {
+    "version": "5.2.0.1",
+    "release_date": "2026-01-14",
+    "release_date_display": "January 15, 2026",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "3",
+      "resolved_issues": "17"
+    },
+    "enhancements": [
+      "Added a \"Save as Company Default\" option on grids, enabling admins to create default views for all users on their instance."
+    ],
+    "improvements": [
+      {
+        "product": "Classic",
+        "id": "574680",
+        "customer_ticket": null,
+        "description": "Implemented URL encoding and decoding for uploaded files and generated letter file names to handle special characters and ensure security compliance.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "584357",
+        "customer_ticket": "33135",
+        "description": "Removed permission dependencies for Task Type, Priority, and Task Status, allowing edits on unlocked tasks while still restricting changes on locked tasks without override permissions.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "584361",
+        "customer_ticket": null,
+        "description": "Allowed editing of all task base fields whenever Permission to Edit Task Base Fields is set to Yes, regardless of the Task Overview permission.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "569266",
+        "customer_ticket": "32205",
+        "scenario": "The number of dynamic elements that could be linked to a parent while creating a form in the form builder was limited.",
+        "root_cause": "The table isiFormFields column formula had a limited size, preventing this from being implemented.",
+        "resolution": "The capacity of the formula column was increased and the type was changed to nvarchar(max)."
+      },
+      {
+        "product": "Classic",
+        "id": "582271",
+        "customer_ticket": null,
+        "scenario": "The system would freeze when the user pressed the Ctrl key in textbox fields.",
+        "root_cause": "There were custom handlers on editable fields that disabled the fields when the Ctrl key was pressed, affecting all Ctrl-based actions.",
+        "resolution": "Implemented a fix that enables Ctrl key shortcuts while preserving change tracking functionality."
+      },
+      {
+        "product": "Classic",
+        "id": "585910",
+        "customer_ticket": "33050",
+        "scenario": "When clicking the Calculate Values button, which is a trigger for webhook creation, not working as expected on an inconsistent basis.",
+        "root_cause": "There was a concurrency issue with the case-sensitive check for forms.",
+        "resolution": "Changed the scope of the service so that it does not share entity context to avoid concurrent issues. The case-sensitive compare has been changed to case-insensitive."
+      },
+      {
+        "product": "RiskHub",
+        "id": "569264",
+        "customer_ticket": null,
+        "scenario": "When there were special characters in the Multi Field group fields on the forms, the application was not correctly showing some of those characters in the API-generated or UI-generated letters.",
+        "root_cause": "There was an issue with the LS_PrepareFormFieldDataAllFields function code.",
+        "resolution": "The code for the function was modified to accommodate the special characters."
+      },
+      {
+        "product": "RiskHub",
+        "id": "584060",
+        "customer_ticket": null,
+        "scenario": "The AllFormData tag was not retrieving data correctly in some API-generated or RiskHub UI-generated letters.",
+        "root_cause": "There were inefficiencies in the stored procedures that collect data for the letter.",
+        "resolution": "Optimized the stored procedures, ensuring that letter generation now completes within an acceptable time frame."
+      },
+      {
+        "product": "RiskHub",
+        "id": "584394",
+        "customer_ticket": "31618",
+        "scenario": "The application was performing the check for the Validate Underwriter and Agency/Producer fields in situations where these validations were not set to mandatory.",
+        "root_cause": "UserExists.cs and AgencyExists.cs were not verifying whether the fields were mandatory before validating that the values did not already exist.",
+        "resolution": "The code has been updated to validate the Underwriter and Agency only when mandatory, and now displays correct error prompts when users lack view permissions for these fields."
+      },
+      {
+        "product": "RiskHub",
+        "id": "588845",
+        "customer_ticket": "33180",
+        "scenario": "There was an issue where the activity validation wizard did not show missing mandatory fields on the task overview when no form was attached.",
+        "root_cause": "The code misreported task completion because it checked too early while data was still loading and didn't count fixed issues.",
+        "resolution": "The code now waits for all data to load and correctly recognizes resolved issues, ensuring the status is accurate and navigation is smooth."
+      },
+      {
+        "product": "RiskHub",
+        "id": "588882",
+        "customer_ticket": "33180",
+        "scenario": "Tasks could not be set to Completed status.",
+        "root_cause": "The task overview and task notifications components were out of sync, with each containing a different status. The rollback action did not update the notifications component accordingly.",
+        "resolution": "Introduced a sync action between components whenever the status is rolled back."
+      },
+      {
+        "product": "RiskHub",
+        "id": "588897",
+        "customer_ticket": null,
+        "scenario": "Company access permission was incorrectly included in the workflow for task creation.",
+        "root_cause": "When the accessCompaniesArea permission was set to false, the user had no permission to retrieve companies, so the agency dropdown could not be populated.",
+        "resolution": "Removed the ViewCompanies permission requirement from the companies API call and added a Broker View permission check for retrieving companies."
+      },
+      {
+        "product": "RiskHub",
+        "id": "588906",
+        "customer_ticket": "33171",
+        "scenario": "The Risk Control Professional was not visible on the task listing grid, even when the view permission was enabled.",
+        "root_cause": "Selected columns in the grid are read from from the selectedColumns array, which is separate from the allColumns array. When the visibility options for columns were being managed, only the allColumns array was being updated depending on the permissions in use.",
+        "resolution": "Synced visibility of columns in both arrays (selected columns and all columns)."
+      },
+      {
+        "product": "RiskHub",
+        "id": "589028",
+        "customer_ticket": "33176",
+        "scenario": "An error occurred when switching between saved views on a listing grid.",
+        "root_cause": "The expected functionality had not been previously implemented.",
+        "resolution": "The missing code was added to implement the feature."
+      },
+      {
+        "product": "RiskHub",
+        "id": "589869",
+        "customer_ticket": null,
+        "scenario": "Users were experiencing failures when attempting to add certain standard recommendations.",
+        "root_cause": "The issue was the result of three interconnected problems: Empty String Handling: Dropdown extension fields with empty string values (value = '') were incorrectly returning null instead of the matching option object. This caused the frontend to send 'undefined' instead of '' when saving, resulting in backend validation errors stating the option was invalid. Inconsistent Dropdown Option Ordering: RiskHub and Classic were displaying dropdown options in different orders. This inconsistency caused confusion for users switching between systems, as the same dropdown would show options in different positions. Duplicate FieldValue Selection Mismatch: When duplicate FieldValue entries existed in the isiRecommendation_ExtDefList table, RiskHub selected the first matching option (FirstOrDefault) while Classic selected the last matching option. This caused the wrong option to be pre-selected when loading recommendations, leading to data inconsistencies between the two systems.",
+        "resolution": "The underlying code causing each of the three problems was fixed as follows: Empty String Fix: Modified the ParseRecommendationExtensionField to separate validation logic by field type. This ensures empty string dropdown values are matched to their corresponding option objects correctly. Consistent Ordering: Added code to the the AutoMapper profile when mapping from isiRecommendation_ExtDefList to RecommendationExtensionFieldDefinition.Options. This ensures that RiskHub displays dropdown options in the same alphabetical order as Heritage, matching the clustered index ordering. Duplicate Selection Alignment: Changed from FirstOrDefault() to LastOrDefault() when matching dropdown values in ParseRecommendationExtensionField. This ensures that RiskHub selects the last matching option when duplicates exist, consistent with Heritage behavior."
+      },
+      {
+        "product": "RiskHub",
+        "id": "589902",
+        "customer_ticket": null,
+        "scenario": "Users were encountering a Location ID error when attempting to add forms.",
+        "root_cause": "The findDataFormField() helper function did not include code to handle when the extension field didn't preserve the options array properly. As a result, the function was unable to extract the LocationId.",
+        "resolution": "The function was modified so that the LocationId is correctly extracted and submitted."
+      },
+      {
+        "product": "RiskHub",
+        "id": "591348",
+        "customer_ticket": null,
+        "scenario": "In some situations, the recommendations grid was not loading.",
+        "root_cause": "The database had a recommendation with Severity set to 1, but the listItemCodesDict didn't have a corresponding list item for BASE_RECOMMENDATIONSEVERITYTYPES1. This was due to missing data in the list items configuration.",
+        "resolution": "Modified the code to use TryGetValue or check to see if the key exists before accessing it."
+      },
+      {
+        "product": "RiskHub",
+        "id": "593117",
+        "customer_ticket": "33501",
+        "scenario": "The State field handling for location searches by Account ID was not defined as non-mandatory.",
+        "root_cause": "After moving the project to the newer .NET version, it was necessary to add the ? character to non-mandatory fields, but this change was not implemented.",
+        "resolution": "Added the ? character to all non-mandatory fields."
+      },
+      {
+        "product": "RiskHub",
+        "id": "593407",
+        "customer_ticket": null,
+        "scenario": "Deleting saved views on listing grids was sometimes generating an error.",
+        "root_cause": "The extended fields were missing the isExtended property, which is necessary for displaying them on the UI.",
+        "resolution": "Extended columns have been mapped with the isExtended property set to true."
+      },
+      {
+        "product": "RiskHub",
+        "id": "595979",
+        "customer_ticket": null,
+        "scenario": "Customers experienced issues when attempting to add files at the account level.",
+        "root_cause": "The XSS middleware runs before Controller attributes are applied. It was attempting to buffer the file upload using the global default limit (16KB) instead of the Controller's custom limit (128MB), causing the request to fail immediately.",
+        "resolution": "Added a Regex exclusion in Startup.cs to bypass the XSS middleware for this specific upload route, allowing the request to reach the Controller where the correct limits are enforced."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 1,
+      "improvements": 3,
+      "resolved_issues": 17,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.2.0.1 - January 15, 2026 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.2",
+    "release_date": "2025-10-08",
+    "release_date_display": "October 9, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "11",
+      "resolved_issues": "30"
+    },
+    "enhancements": [
+      "Implemented locking of forms sent as eSurvey Invitations in RiskHub. (DEVHAUS-19)",
+      "Implemented eSurvey invitation creation at form creation. (DEVHAUS-3)",
+      "Enabled eSurvey Management (send, resend, and revoke) for tasks in RiskHub. (DEVHAUS-1)"
+    ],
+    "improvements": [
+      {
+        "product": "RiskHub",
+        "id": null,
+        "customer_ticket": null,
+        "description": "Comprehensive enhancements to API back-end services, resulting in improved server efficiency and faster load times.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-5442",
+        "customer_ticket": null,
+        "description": "Introduced logging for changes to account, task, and recommendation extension fields, as well as for the addition and deletion of letter templates",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-2",
+        "customer_ticket": null,
+        "description": "Implemented character display limit for Text Area fields in grids with hover-over for full text, improving the ability to view and manage grids.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-15",
+        "customer_ticket": null,
+        "description": "Enabled the combined ability to send a Letter after it is generated in RiskHub to match existing functionality in Classic.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-38",
+        "customer_ticket": null,
+        "description": "Implemented User Landing Page preference in RiskHub Based on Classic's User Starting Preference Maintenance setting (eg, Home Screen, Surveys).",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "GL-30",
+        "customer_ticket": null,
+        "description": "Updated navigation buttons within Classic to use up/down arrows to align with Duck Creek brand styling.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "GL-31",
+        "customer_ticket": null,
+        "description": "Redesigned the left navigation bar on the Task Overview page within Classic for consistency with Duck Creek brand styling.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "GL-100",
+        "customer_ticket": null,
+        "description": "Logging added for Extension Fields and Letter Template modifications to improve auditability.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "NOONE-86",
+        "customer_ticket": null,
+        "description": "Core system integrations/accelerators - Expanded Account Name length validation to 150 characters during sync process.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "NOONE-70",
+        "customer_ticket": null,
+        "description": "Core system integrations/accelerators - Introduced support for Bulk Submission for High-Volume Data Imports.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "NOONE-27",
+        "customer_ticket": null,
+        "description": "Core system integrations/accelerators - Improved sync process reliability, traceability, and configuration flexibility.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5428",
+        "customer_ticket": null,
+        "scenario": "Webhooks did not trigger when the trigger field was an Account extension field.",
+        "root_cause": "The webhook was triggered only when editing base fields on the contact edit page, but not on subpages containing extension fields. Additionally, in RiskHub, the webhook failed because the object retrieved from the database was not cloned correctly.",
+        "resolution": "Extended webhook triggering to include extension fields pages, and fixed the RiskHub implementation to properly clone the database object before processing."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5540",
+        "customer_ticket": null,
+        "scenario": "Adding an audit checklist form to a task caused the task overview to throw errors.",
+        "root_cause": "The error was caused by the index IX_FormulaRefs_Child on the ChildFieldId column exceeding SQL Server's maximum allowed length for nonclustered index keys (1700 bytes). The index definition allowed a potential key size up to 8000 bytes, and when large values were inserted or updated, SQL Server could not maintain the index, resulting in operation failures.",
+        "resolution": "The problematic index was removed because it was not critical for performance or application logic. This removal prevents insert and update operations involving large values from failing due to index size limitations, without affecting functionality."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5544",
+        "customer_ticket": null,
+        "scenario": "Adding special characters to MFG form fields caused letters to return a 404 error.",
+        "root_cause": "A regression introduced in version 5.2 by GL-5 removed the XML entity-encoding step in the MFG merge logic. This caused special characters like &, <, and > to create invalid XML, resulting in a 404 error during letter generation.",
+        "resolution": "Reverted to the 5.1.9 behavior by reintroducing XML entity-encoding during the merge process. Special characters are temporarily replaced with placeholders to maintain valid XML, then converted back when building JSON, ensuring letters render correctly."
+      },
+      {
+        "product": "Classic",
+        "id": "GL-6",
+        "customer_ticket": null,
+        "scenario": "Forms appeared locked even when only one user had them open.",
+        "root_cause": "When forms included hidden calculated fields, Mercury recalculated them and triggered PATCH updates, even though JAWS treated them as null. This resulted in form lock conflicts, especially when navigating quickly after load.",
+        "resolution": "Added logic in Mercury to skip PATCH updates for hidden calculated fields, preventing unintended update calls and lockout errors."
+      },
+      {
+        "product": "Classic",
+        "id": "GL-24",
+        "customer_ticket": null,
+        "scenario": "Formatting issues on the letters email page needed to be corrected.",
+        "root_cause": "Changes in layout caused responsive issues across different viewports.",
+        "resolution": "Applied fixed width to the main container to stabilize layout across screen sizes."
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-5436",
+        "customer_ticket": null,
+        "scenario": "Letter file names for RiskHub and Classic needed to be sanitized to ensure compatibility.",
+        "root_cause": "RiskHub: The filename sanitization rules on the RiskHub server were written in a format it couldn't interpret, so the rules were ignored. This caused the server to accept all characters in filenames, including Windows-invalid characters (\\ / : * ? \" < > |), leading to crashes with \"Illegal characters in path\" errors. Classic: A regression from ticket CLOUD-3526 introduced a faulty filename allow-list rule that unintentionally permitted extra punctuation (@ ; = [ ] ^ _) and disallowed hyphens (-). Windows-invalid characters were still removed earlier, preventing crashes.",
+        "resolution": "Implemented a single, consistent allow-list for both Classic and RiskHub, permitting only letters (a-z, A-Z), digits (0-9), space, and the characters ~ . _ - in filenames."
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-5427",
+        "customer_ticket": null,
+        "scenario": "Seamless auto-logging between Classic and RiskHub was not working properly.",
+        "root_cause": "This regression issue (related to ticket NOONE-30 ) causes a console error during Classic login. The error-SyntaxError: Expected ',' or '}' after property value in JSON-occurs due to improper JSON string parsing, which breaks the code execution. As a result, critical functions like saving data to localStorage fail.",
+        "resolution": "Fixed the JSON string parsing issue in Classic login to prevent the error. Additionally, in RiskHub, added logic to automatically request a new AuthKey from the server if the current AuthKey is missing or expired."
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-5507",
+        "customer_ticket": null,
+        "scenario": "There was a difference in section grading displayed on the Letter generated in Classic vs RiskHub.",
+        "root_cause": "The result set returned by the stored procedure LS_PrepareFormFieldDataAllFields was not properly ordered, leading to inconsistent output.",
+        "resolution": "Added an ORDER BY clause to the LS_PrepareFormFieldDataAllFields stored procedure to ensure the output is correctly sorted."
+      },
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-5",
+        "customer_ticket": "Bug",
+        "scenario": "The Author field was displaying as Object Object on the letters grid.",
+        "root_cause": "The API returned User.Name as an object instead of a string, which broke name display logic.",
+        "resolution": "Updated the code to access the Name property using User.Name.Name for correct value extraction."
+      },
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-74",
+        "customer_ticket": "Bug",
+        "scenario": "The Generated Letter banner remained visible after user logout.",
+        "root_cause": "The notification banner remained visible even after user logout, due to lack of session awareness.",
+        "resolution": "Introduced a shared Subject to track authentication state. The banner component now subscribes to login status and hides itself automatically upon logout, ensuring a clean user experience."
+      },
+      {
+        "product": "RiskHub",
+        "id": "GL-38",
+        "customer_ticket": "Bug",
+        "scenario": "The activity creation wizard would jump back to the first step when Auto-Assigned Due Date Config By was set to Request Type.",
+        "root_cause": "Form fields were being fetched multiple times unnecessarily, and dropdown changes triggered unintended section jumps.",
+        "resolution": "Added conditions to prevent duplicate form field calls and limit section jumps only to relevant dropdown interactions."
+      },
+      {
+        "product": "RiskHub",
+        "id": "NEP-13",
+        "customer_ticket": "Bug",
+        "scenario": "The communications download endpoint was linking to the actual letter instead of the template.",
+        "root_cause": "Letters were failing to open properly due to the file path pointing to templates instead of generated letters, and incorrect file type metadata (non-PDF).",
+        "resolution": "Updated the file path using ImagingPath, and ensured communication letters are served with correct .pdf extension and content type."
+      },
+      {
+        "product": "RiskHub",
+        "id": "NEP-26",
+        "customer_ticket": "Bug",
+        "scenario": "The endpoint used by the validation wizard in RiskHub to properly fetch mandatory field errors was behaving incorrectly.",
+        "root_cause": "Form fields lacked dynamic visibility logic, leading to always-visible or always-hidden fields regardless of conditions.",
+        "resolution": "Implemented conditional show/hide logic to support dynamic field visibility based on form context."
+      },
+      {
+        "product": "RiskHub",
+        "id": "NEP-144",
+        "customer_ticket": "Bug",
+        "scenario": "Incorrect form sections were being cached and loaded from previous forms.",
+        "root_cause": "The preselect first option feature in the AddRecommendationService was not reflected in the form UI.",
+        "resolution": "Integrated the preselection logic into the data form component to ensure correct default selections."
+      },
+      {
+        "product": "RiskHub",
+        "id": "NEP-145",
+        "customer_ticket": "Bug",
+        "scenario": "There was an overlap of attachment names in the Send as an Email modal.",
+        "root_cause": "Styles to manage text overflow were missing, causing layout issues with overlapping text.",
+        "resolution": "Added CSS styles to apply an ellipsis (...) on overflow, improving UI readability."
+      },
+      {
+        "product": "RiskHub",
+        "id": "NEP-153",
+        "customer_ticket": "Bug",
+        "scenario": "The AllFormData letter generated through the API produced a blank PDF on 5.1.9+ environments, despite the fix implemented in CLOUD5-3986.",
+        "root_cause": "In the AllFormData template flow, DateAdded fields were incorrectly processed-first converted to strings, then passed as integers, causing failures in formatting and resulting in blank letters.",
+        "resolution": "Updated the logic to safely handle DateTime values provided as strings, ensuring recommendation and other date-based merge fields render correctly across all templates."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 3,
+      "improvements": 11,
+      "resolved_issues": 16,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.2 - October 9, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.9.5",
+    "release_date": "2025-12-09",
+    "release_date_display": "December 10, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "1",
+      "resolved_issues": "0"
+    },
+    "enhancements": [],
+    "improvements": [
+      {
+        "product": "Classic",
+        "id": "583689",
+        "customer_ticket": null,
+        "description": "To ensure compliance with industry standards, the length of email fields have been increased to 255 characters. The local part of the address can now accommodate up to 64 characters.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 1,
+      "resolved_issues": 0,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.9.5 - December 10, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.9.4",
+    "release_date": "2025-08-07",
+    "release_date_display": "August 8, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "1",
+      "resolved_issues": null
+    },
+    "enhancements": [],
+    "improvements": [
+      {
+        "product": "RiskHub",
+        "id": "NOONE-86",
+        "customer_ticket": null,
+        "description": "Expanded Account Name length validation to 150 characters in sync process.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 1,
+      "resolved_issues": 0,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.9.4 - August 8, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.9.3",
+    "release_date": "2025-07-09",
+    "release_date_display": "July 10, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": null,
+      "resolved_issues": "2"
+    },
+    "enhancements": [],
+    "improvements": [],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "GL-61",
+        "customer_ticket": "31448",
+        "scenario": "An infinite spinner would appear when editing surveys with a lastAssigned location set to null.",
+        "root_cause": "LastAssignedLocationId was incorrectly set to an empty string ('') instead of null during Classic Edit Summary updates, leading to errors in subsequent update operations.",
+        "resolution": "Updated logic to retain LastAssignedLocationId as null in the update statement when no new location is selected and the original value was null, preventing future update errors."
+      },
+      {
+        "product": "Classic",
+        "id": "GL-64",
+        "customer_ticket": "31258",
+        "scenario": "A session expiration error was appearing while accessing forms.",
+        "root_cause": "A recent change made to how access tokens for accessing forms were generated was causing authentication disruptions for some legacy SSO users.",
+        "resolution": "Reverted the access token handling change to restore compatibility for legacy SSO clients, while maintaining stable authentication behavior across both AAD and non-AAD users."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 0,
+      "resolved_issues": 2,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.9.3 - July 10, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.9.2",
+    "release_date": "2025-07-02",
+    "release_date_display": "July 3, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "1",
+      "resolved_issues": null
+    },
+    "enhancements": [],
+    "improvements": [
+      {
+        "product": "Classic & RiskHub",
+        "id": "NOONE-73",
+        "customer_ticket": null,
+        "description": "Improved sync process reliability, traceability, and configuration flexibility.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 1,
+      "resolved_issues": 0,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.9.1",
+    "release_date": "2025-06-12",
+    "release_date_display": "June 13, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": null,
+      "resolved_issues": null
+    },
+    "enhancements": [
+      "Fixed an issue where some captions were missing in the My Schedule section on the homepage. (GL-22)",
+      "Implemented UI changes to the left navigation bar on the Task Overview page. (GL-31)",
+      "Changed the blue underline color to match the divider bar between the Account Overview/Task Overview and other sections. (GL-32)",
+      "Fixed the vertical spacing of the search bar in the Customer Listing to remove stacked search fields. (GL-27)",
+      "Reduced padding for search screen header bars to tighten up the layout. (GL-26)",
+      "Fixed formatting issues in the Letters Modal. (GL-24)",
+      "Added a background to the logo placeholder in the Maintenance section to improve visibility for white logos. (GL-23)",
+      "Implemented UI updates to the Customer Profile section in Account Overview. (GL-25)",
+      "Changed the expand/collapse buttons from +/- to up/down arrows across the system. (GL-30)"
+    ],
+    "improvements": [],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "RiskHub",
+        "id": "DEVHAUS-36",
+        "customer_ticket": null,
+        "scenario": "On some forms, the user was unable to select an option for radio button fields.",
+        "root_cause": "The radio buttons were using the value as an identifier when the user made a selection instead of of using the ID. This would cause problems when the value was not unique.",
+        "resolution": "The identifiers have been switched back to IDs,"
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 9,
+      "improvements": 0,
+      "resolved_issues": 1,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.9.1 - June 13, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.8.3",
+    "release_date": "2025-04-13",
+    "release_date_display": "April 14, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": null,
+      "resolved_issues": null
+    },
+    "enhancements": [],
+    "improvements": [],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5287",
+        "customer_ticket": null,
+        "scenario": "Fixed an issue where the rules engine continued executing after the first matching rule was triggered",
+        "root_cause": "The issue was caused by a code fix that was implemented for a previously-resolved issue.",
+        "resolution": "The code was reverted, resolving the rules engine issue."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 0,
+      "resolved_issues": 1,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.8.3 - April 14, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.8.2",
+    "release_date": "2025-03-30",
+    "release_date_display": "March 31, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": null,
+      "resolved_issues": null
+    },
+    "enhancements": [],
+    "improvements": [],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "CLOUD-3442",
+        "customer_ticket": "27249 29587 29631 29692",
+        "scenario": "Locking the forms was not working as expected under AAD configuration.",
+        "root_cause": "The system requires a unique key to manage form access and locking. Using the Auth Token as this key caused issues when tokens were refreshed.",
+        "resolution": "A unique key was implemented to manage form access and locking."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3545",
+        "customer_ticket": null,
+        "scenario": "There were missing ExtensionFields in the Get Task by ID Endpoint",
+        "root_cause": "The issue was caused by the use of a third-party library's IncludeFilter method combined with missing data during entity population.",
+        "resolution": "Updated the code to use Entity Framework's standard Include method."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5206",
+        "customer_ticket": "30104",
+        "scenario": "Creating and patching accounts from Risk Hub using the API was not functioning correctly.",
+        "root_cause": "Incorrect filtering logic had been implemented which led to unexpected behavior in some cases.",
+        "resolution": "The filtering condition was removed from the initial query and applied afterward to ensure accurate and consistent results."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 0,
+      "resolved_issues": 3,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.8.2 - March 31, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.8.1",
+    "release_date": "2025-03-09",
+    "release_date_display": "March 10, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": null,
+      "resolved_issues": null
+    },
+    "enhancements": [],
+    "improvements": [],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5161",
+        "customer_ticket": null,
+        "scenario": "In AAD configuration, the listing pages on Risk Hub were not returning any data.",
+        "root_cause": "The issue was caused by the use of the IncludeFilter feature from a third-party library during a performance optimization.",
+        "resolution": "The IncludeFilter feature has been replaced with standard Include statements using predefined predicates, ensuring more reliable and consistent behavior."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5123",
+        "customer_ticket": "30174",
+        "scenario": "Ther was an issue with the forms fields endpoint that prevented large data sets from being patched correctly.",
+        "root_cause": "The issue was caused by logic that updated each record individually, leading to inefficiencies.",
+        "resolution": "The process was improved by updating records in batches, which resolved the issue and enhanced performance."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD5-5184",
+        "customer_ticket": "30142 30671",
+        "scenario": "Fixed an issue where the Account RCP was not auto-populated when a task was created.",
+        "root_cause": "The issue was caused by a code fix that was implemented for a previously-resolved issue.",
+        "resolution": "The code was reverted, resolving the Account RCP issue."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 0,
+      "improvements": 0,
+      "resolved_issues": 3,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.8.1 - March 10, 2025 release notes - Duck Creek Solution Center.html"
+  },
+  {
+    "version": "5.1.8",
+    "release_date": "2025-02-11",
+    "release_date_display": "February 12, 2025",
+    "platform": "Loss Control (Classic and RiskHub)",
+    "overview_stats": {
+      "improvements": "4",
+      "resolved_issues": "13"
+    },
+    "enhancements": [
+      "Functionality to display selected tasks on the map interface. (CLOUD5-1010)",
+      "The ability to select multiple tasks from the Task Grid for map presentation. (CLOUD5-4952)",
+      "Backend support for displaying selected task records on the map. (CLOUD5-4977)",
+      "The ability to view task details in the maps modal. (CLOUD5-1013)",
+      "A new Search Results panel in the maps modal. (CLOUD5-4974)"
+    ],
+    "improvements": [
+      {
+        "product": "Classic",
+        "id": null,
+        "customer_ticket": null,
+        "description": "The EPPlus library, used for smart scoring, has been upgraded to the latest version to ensure compatibility and leverage new Excel features.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-4631",
+        "customer_ticket": null,
+        "description": "Implemented a slide-out feature for viewing recommendation details across all recommendation submodals.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-4741",
+        "customer_ticket": null,
+        "description": "Enhanced the UI with improved font and weight settings for better visibility.",
+        "documentation": null
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-4881",
+        "customer_ticket": null,
+        "description": "Added a Findings tab to the left navigation bar to display grading scores for tasks.",
+        "documentation": null
+      }
+    ],
+    "new_features": [],
+    "resolved_issues": [
+      {
+        "product": "Classic",
+        "id": "CLOUD-3395",
+        "customer_ticket": "28273 29076",
+        "scenario": "Forms added via the API were not adhering to the configuration settings set in maintenance.",
+        "root_cause": "Incorrect setting of the Ordinal field caused issues with form ordering.",
+        "resolution": "Ensured the Ordinal field aligns correctly with the selected ordering setting."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3441",
+        "customer_ticket": "27822",
+        "scenario": "Multi-line text entered on a new line wasn't displaying correctly in the UI.",
+        "root_cause": "The code had issues with handling newline and carriage return characters.",
+        "resolution": "Updated logic to comprehensively handle newline and carriage return characters."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3446",
+        "customer_ticket": "25036",
+        "scenario": "Tasks could not be saved if the Company field was left blank.",
+        "root_cause": "The condition for checking CompanyID did not account for whitespace.",
+        "resolution": "The code now ensures that extra spaces are removed from CompanyID. Blank values are treated as null, maintaining accurate updates."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3451",
+        "customer_ticket": "27682",
+        "scenario": "There were missing Grading Fields on Forms uploaded from Mobile,",
+        "root_cause": "There were missing fields in the Form model.",
+        "resolution": "Added the necessary fields to the Form model for proper serialization and deserialization."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3453",
+        "customer_ticket": "27866",
+        "scenario": "API-generated letters were not pulling recommendations.",
+        "root_cause": "The stored procedure was excluding sections with no fields.",
+        "resolution": "Updated the stored procedure to return all sections, ensuring accurate data for letter generation."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3464",
+        "customer_ticket": "28752 28885 28993",
+        "scenario": "Users were being prevented from adding recommendations to forms added via the API.",
+        "root_cause": "A valid location ID that did not belong to the account was causing errors.",
+        "resolution": "Added a validation to check if the location ID belongs to the account associated with the task."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3483",
+        "customer_ticket": "26699",
+        "scenario": "The phone number field was being incorrectly set as mandatory during account creation.",
+        "root_cause": "The Account Telephone field had been set to mandatory for all customers in version 5.0.2.",
+        "resolution": "Added a flag to control the mandatory status of the Account Telephone field."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3484",
+        "customer_ticket": "28326 29064",
+        "scenario": "The visibility of the description field in the diaries modal was not functioning as expected.",
+        "root_cause": "The placeholder had overlapped with the text field.",
+        "resolution": "Added margin-top to the description text."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3486",
+        "customer_ticket": "28811",
+        "scenario": "The recommendation description field did not adhere to the character limit when added via the API.",
+        "root_cause": "There was a mismatch between API and front-end validation limits.",
+        "resolution": "Updated the API validation to match the front-end limit."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3320",
+        "customer_ticket": null,
+        "scenario": "Users were being prevented from editing account extension fields even when permissions were set to allow them to edit account formation and bypass account and task assignment rules were set to No.",
+        "root_cause": "Users without permission to edit account information could still modify account extension fields, but not base fields.",
+        "resolution": "Added a new endpoint to allow users to trigger changes for extension fields without the \"Edit Account Info\" permission."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3487",
+        "customer_ticket": null,
+        "scenario": "There was an issue with the date format in the Advanced-Search Endpoints.",
+        "root_cause": "A prior change in the date format change was causing the issue.",
+        "resolution": "Updated logic to ensure compatibility with the new date format."
+      },
+      {
+        "product": "Classic",
+        "id": "CLOUD-3489",
+        "customer_ticket": null,
+        "scenario": "Signatures were not appearing on API-generated letter outputs.",
+        "root_cause": "The method that was fetching data was passing the key instead of the value.",
+        "resolution": "Corrected the method to pass the value."
+      },
+      {
+        "product": "RiskHub",
+        "id": "CLOUD5-3597",
+        "customer_ticket": null,
+        "scenario": "A confirmation message was hiding a dynamic element.",
+        "root_cause": "There were missing checks for field types Column and Table.",
+        "resolution": "Included conditions to check if the fields are of type Column or Table."
+      }
+    ],
+    "known_issues": [],
+    "counts": {
+      "enhancements": 5,
+      "improvements": 4,
+      "resolved_issues": 13,
+      "known_issues": 0
+    },
+    "source_file": "Loss Control (Classic and RiskHub) 5.1.8 - February 12, 2025 release notes - Duck Creek Solution Center.html"
+  }
+]

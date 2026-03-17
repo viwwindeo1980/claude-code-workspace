@@ -8,6 +8,7 @@ import { generateRCA } from "./lib/rca-engine.js";
 import { buildCorpus, cosineSimilarity, topTerms } from "./lib/tfidf.js";
 import { testConnection as testZenDesk, isZenDeskConfigured, collectZenDeskIds } from "./lib/zendesk.js";
 import { triggerSync, startWeeklyScheduler, getLastSyncStatus } from "./lib/ado-sync.js";
+import { getReleaseNotesSummary, getAllReleases, findMatchingIssues } from "./lib/release-notes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -97,6 +98,42 @@ app.post("/api/sync", async (req, res) => {
   // Run async — respond immediately with accepted status
   res.status(202).json({ message: "Sync started", started_at: new Date().toISOString() });
   await triggerSync(reloadAfterSync);
+});
+
+// ─── GET /api/release-notes ───────────────────────────────────────────────────
+app.get("/api/release-notes", (req, res) => {
+  const summary = getReleaseNotesSummary();
+  if (req.query.full === "true") {
+    return res.json({ ...summary, releases: getAllReleases() });
+  }
+  res.json(summary);
+});
+
+// ─── GET /api/release-notes/search?q=... ──────────────────────────────────────
+app.get("/api/release-notes/search", (req, res) => {
+  const q = (req.query.q || "").trim();
+  if (!q) return res.status(400).json({ error: "q parameter required" });
+
+  // Build synthetic defect objects for the matcher
+  const syntheticDefects = [{ summary: q, description: q, resolution_comments: null }];
+  const matches = findMatchingIssues(syntheticDefects);
+
+  res.json({
+    query: q,
+    matches: matches.map(m => ({
+      version:       m.release.version,
+      release_date:  m.release.release_date,
+      entry_type:    m.entry.entry_type,
+      id:            m.entry.id,
+      product:       m.entry.product,
+      customer_ticket: m.entry.customer_ticket,
+      scenario:      m.entry.scenario || m.entry.description,
+      root_cause:    m.entry.root_cause,
+      resolution:    m.entry.resolution,
+      match_type:    m.matchType,
+      score:         Math.round(m.score * 100) / 100,
+    })),
+  });
 });
 
 // ─── GET /api/stats ───────────────────────────────────────────────────────────

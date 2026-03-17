@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<!-- saved from url=(0194)https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content="MindTouch">
+        <meta name="robots" content="index,follow">
+        <link rel="search" type="application/opensearchdescription+xml" title="Duck Creek Solution Center Search" href="https://solutioncenter.duckcreek.com/@api/deki/site/opensearch/description">
+        <link rel="apple-touch-icon" href="https://solutioncenter.duckcreek.com/@public/production/site_6404/1594821472-apple-touch-icon.png">
+        <link rel="shortcut icon" href="https://solutioncenter.duckcreek.com/@public/production/site_6404/1578951061-favicon.ico">
+        <link rel="alternate" type="application/atom+xml" title="What&#39;s new feed" href="https://solutioncenter.duckcreek.com/@api/deki/site/feed">
+        <link rel="alternate" type="application/atom+xml" title="Page and subpages changes feed" href="https://solutioncenter.duckcreek.com/@api/deki/pages/493596/feed?feedtype=subpagechanges&amp;depth=infinity">
+        <link rel="alternate" type="application/atom+xml" title="Page changes feed" href="https://solutioncenter.duckcreek.com/@api/deki/pages/493596/feed?feedtype=pagechanges">
+
+
+        <title>Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center</title>
+
+
+    <style type="text/css">/*<![CDATA[*/
+#mt-toc-container, .columbia-article-topic-category .elm-pdf-export {
+display: inline-block !important;
+}
+
+.elm-meta-article-navigation {
+display: inline-block !important;
+float: right;
+}
+
+.mt-article-pagination, .mt-feedback-rating-container, .columbia-article-topic-category .elm-attachments  {
+display: block !important;
+}
+
+.columbia-article-topic-category .elm-attachments {
+display: block !important;
+}
+/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+.EXPAND_COLLAPSE dt {
+    color: #4597cb;
+    cursor: pointer;
+}
+.EXPAND_COLLAPSE dd {
+    display: none;
+}
+
+.EXPAND_COLLAPSE dt:before {
+    content: "+";
+    float: left;
+}
+
+.EXPAND_COLLAPSE dt.expanded:before {
+    content: "-";
+}
+
+.EXPAND_COLLAPSE dd {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/#fileAttachTable {
+    width: 100%;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+.guide-nav h1.footer-guide-title {
+    flex: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+.guide-nav details h1 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+.guide-nav p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--primary);
+}
+.guide-nav a, .guide-nav a:visited {
+    color: var(--action);
+}
+.guide-nav {
+    display: flex;
+    flex-basis: row;
+    flex-wrap: wrap;
+    gap: 2em 1em;
+    border: 2px solid var(--primary);
+    border-radius: 4px;
+    padding: .5em 1em;
+    background: var(--neutral);
+}
+.guide-nav details {
+    flex: 1 1;
+    min-width: 40ch;
+    max-width: 60ch;
+}
+.guide-nav details summary {
+    list-style: outside disclosure-closed;
+}
+.guide-nav details[open] summary {
+    list-style: outside disclosure-open;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+:root {
+    --text: #313541;
+    --neutral: #F1F3F7;
+    --primary: #545A7A;
+    --secondary: #5D69A8;
+    --tertiary: #38A868;
+    --action: #5c45fe;
+    --highlight: #0f73ea;
+    --success: #328200;
+    --information: #006CC8;
+    --warning: #B55600;
+    --alert: #D22837;
+    --staging-alert-color-light: color-mix(in srgb, #d61223, white 80%);
+    --staging-alert-color-dark: color-mix(in srgb, #d61223, white 80%);
+    --staging-background: var(--staging-alert-color-light);
+
+    --ultradark: #0F1014;
+    --ultralight: #D6D7D9;
+
+    --primary-lightest: color-mix(in srgb, var(--primary), var(--ultralight) 50%);
+    --primary-ultralight: color-mix(in srgb, var(--primary), var(--ultralight) 80%);
+    --primary-light: color-mix(in srgb, var(--primary), var(--ultralight) 20%);
+    --primary-dark: color-mix(in srgb, var(--primary), var(--ultradark) 20%);
+    --primary-darkest: color-mix(in srgb, var(--primary), var(--ultradark) 50%);
+    --primary-ultradark: color-mix(in srgb, var(--primary), var(--ultradark) 70%);
+
+    --font: "Inter";
+    --heading-font: "Inter";
+    --body-font: "Inter";
+    --input-font: "Inter";
+    --text-color: var(--text);
+        color-scheme: light dark;
+}
+body {
+    --font: var(--body-font);
+}
+section.mt-content-container :is(h1, h2, h3, h4, h5, h6) {
+    --font: var(--heading-font);
+    width: fit-content;
+    border-bottom: none;
+    font-weight: 400;
+}
+
+h1#title {
+    border-bottom: 1px solid var(--primary-dark);
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+#elm-header .elm-header-global-nav, .elm-user-pro-member #elm-header .elm-header-global-nav {
+    background: var(--primary-ultradark);
+    font-family: var(--heading-font);
+}
+table.docTable {
+    width: auto;
+}
+table.docTable td {
+    width: fit-content;
+    max-width: 80ch;
+    min-width: 10ch;
+    hyphens: auto;
+    word-break: break-word;
+}
+table.docTable td(max-width:40ch) {
+    word-break: none;
+}
+.elm-page-notifications #deki-page-alerts>form {
+    right: -1px !important;
+    left: auto !important;
+}
+
+#fileAttachTable_wrapper {
+    display: grid;
+    grid-template-areas:
+        "search search"
+        "table table";
+}
+
+.dataTables_scroll {
+    grid-area: table;
+}
+
+.fg-toolbar.ui-toolbar.ui-widget-header.ui-helper-clearfix.ui-corner-tl.ui-corner-tr {
+    grid-area: search;
+}
+button#attach-new-file {
+    position:  static;
+    margin-bottom: 1em;
+}
+div.note-general, div.note-caution {
+    max-width: 80ch;
+    box-sizing: border-box;
+}
+form#editform {
+    width: 100%;
+}
+ol.elm-meta-data-elm-meta-top li {
+    margin-bottom: 0;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+article.elm-content-container {
+    padding: 0;
+    background: var(--neutral);
+    margin: 0;
+    display: grid;
+    max-width: 100%;
+    min-width: auto;
+    grid-template-areas:
+        "guide header header"
+        "guide toc invisible"
+        "guide toc page"
+        "guide footer footer"
+        "guide sfoooter sfooter";
+    gap: .5em 1em;
+    grid-template-columns: auto auto 1fr;
+}
+.mt-content-side {
+    grid-area: guide;
+    position: sticky;
+    top: 38px;
+    overflow-y: auto;
+    max-height: calc(100vh - 38px);
+}
+.mt-content-footer {
+    grid-area: footer;
+    /* border-top: 2px solid var(--text-color); 
+    border-bottom: 2px solid var(--text-color); */
+    padding-top: 1em;
+}
+.elm-content-container header:first-of-type {
+    grid-area: header;
+    padding: .5em .5em 0 0;
+}
+aside#mt-toc-container {
+    grid-area: toc;
+    width: min-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+/*    border: 1px solid var(--primary-ultralight);
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px var(--primary-ultralight);
+    background: white; */
+    background: transparent;
+    border: none;
+    position: sticky;
+    top: 50px;
+    max-height: 90vh;
+    overflow-y: auto;
+    font-family: var(--heading-font);
+}
+#mt-toc-container button.mt-toggle.mt-summary-toggle.ui-button-icon.mt-toggle-collapse {
+    font-family: var(--heading-font);
+    width: 30ch;
+    min-width: auto;
+    padding-right: 1em;
+    line-height: 1;
+}
+#mt-toc-container button.mt-toggle.mt-summary-toggle.ui-button-icon.mt-toggle-expand {
+    font-family: var(--heading-font);
+    color: transparent;
+    width: 0ch;
+    min-width: auto;
+    padding-right: 1em;
+    line-height: 1;
+}
+.mt-toggle-collapse + .mt-toc-content {
+    width: 30ch;
+}
+#mt-toc-container[data-collapsed=true] .mt-toggle-expand + .mt-toc-content {
+    width: 3ch;
+    max-width: 100%;
+}
+.mt-content-container {
+    grid-area: page;
+    padding: 0 1em .5em 0;
+}
+.mt-toc-content {
+    padding-right: .5em;
+    transition: .6s ease !important;
+}
+#mt-toc-container .mt-toggle-collapse:after,
+#mt-toc-container .mt-toggle-expand:after {
+    display: none;
+}
+#mt-toc-container button.mt-toggle:focus {
+    border: none;
+    outline: none;
+}
+#mt-toc-container .mt-toggle-collapse:before {
+    content: "chevron_left";
+}
+#mt-toc-container .mt-toggle-expand:before {
+    content: "chevron_right";
+}
+#mt-toc-container button.mt-toggle.mt-toggle-expand:before,
+#mt-toc-container button.mt-toggle.mt-toggle-collapse:before {
+    color: #666;
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 1;
+    float: left;
+    padding-right: 5px;
+    vertical-align: top;
+    position: static;
+}
+#mt-toc-container button.mt-toggle.mt-toggle-collapse:hover:before,
+#mt-toc-container button.mt-toggle.mt-toggle-expand:hover:before {
+    color: var(--link-color-hover);
+}
+.mt-content-container p, .mt-content-container li, .mt-content-container summary, .mt-content-container div.note-caution, .mt-content-container div.note-general {
+    max-width: 80ch;
+}
+.docTable td {
+    max-width: 60ch;
+}
+
+div.note-access-restricted {
+    border: 1px solid var(--alert);
+    border-left-width: 4px;
+    border-radius: 4px;
+    padding: 1em;
+    background: color-mix(in srgb, var(--alert), white 70%);
+    z-index: 4;
+    max-width: 80ch;
+}
+footer.elm-content-footer {
+    grid-area: sfooter;
+}
+
+nav .elm-nav-container {
+    margin: 0;
+    max-width: 100%;
+}
+.elm-header-custom #header-container {
+    max-width: 100%;
+    padding: 0 1em;
+}
+
+div#pageText {
+    padding: .5em 1em;
+    background: white;
+    border-radius: 4px;
+     /*width: fit-content;*/
+    min-width: 60ch;
+    box-shadow: 2px 2px 2px var(--primary-ultralight);
+    border: 1px solid var(--primary-ultralight);
+    /*max-width: 100ch;*/
+}
+
+@media only screen and (max-width: 768px) {
+    .mt-content-side,
+    aside#mt-toc-container {
+        visibility: hidden; /* Hides the content */
+        height: 0;         /* Ensures it doesn't take visual space */
+        overflow: hidden;  /* Prevents scrollbars for hidden content */
+    }
+     article.elm-content-container {
+        display: block;
+    }
+    section.mt-content-container h1.home-title {
+        display: none;
+    }
+    section.mt-content-container h5.subtitle {
+        diplay: none;
+    }
+    nav.home-products {
+        display: block;
+    }
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+header.mt-content-header {
+    grid-area: invisible;
+/*    position: sticky; */
+    top: 46px;
+    z-index: 4;
+    padding-right: 1em;
+    padding-left: 4px;
+}
+header.mt-content-header aside.page-notice.staging {
+    border: 2px solid #880400;
+    border-left-width: 2.5ch;
+    border-radius: 4px;
+    background: #880400;
+    color: white;
+    padding: .5em .25em;
+    z-index: 99;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.7);
+}
+header.mt-content-header aside.page-notice.staging:before {
+    color: white;
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 1;
+    vertical-align: bottom;
+    content: "lock";
+    position: relative;
+    left: -1.5ch;
+    float: left;
+    top: 2px;
+    margin-right: -2ch;
+}
+header.mt-content-header aside.page-notice > p {
+    /*max-width: 80ch; */
+    color: white;
+}
+header.mt-content-header aside.page-notice > p:first-of-type {
+    margin-top: 0;
+}
+header.mt-content-header aside.page-notice > p:last-of-type {
+    margin-bottom: 0;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+.guide-nav-left a.lock:after {
+    content: "lock";
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 0;
+    vertical-align: bottom;
+    color: color-mix(in srgb, var(--warning), var(--ultralight) 80%);
+    margin-left: 5px;
+}
+.guide-nav-left p.current,
+.guide-nav-left h1.current,
+.guide-nav-left summary.current {
+    background: #191b25;
+}
+aside.mt-content-side {
+    border-right: 2px solid var(--primary);
+    float: left;
+    background: var(--primary);
+    height: 100%;
+    transition: .4s ease;
+    overflow-x: hidden;
+    width: max-content;
+    padding: 0;
+    --text-color: white;
+    --link-color: white;
+    --link-color-hover: var(--goldeneye);
+    --font: var(--heading-font);
+    font-family: var(--heading-font);
+}
+
+.guide-nav-left {
+    transition: 1s ease;
+    overflow-x: hidden;
+    width: 3ch;
+    transition: .5s ease;
+}
+.guide-nav-left[open] {
+    width: 40ch;
+}
+.guide-nav-left > summary {
+    font-weight: bold;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .3s ease;
+    display: inline-block;
+    float: left;
+    padding: .25em;
+    margin: .25em;
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 0;
+    vertical-align: bottom;
+    color: var(--link-color);
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer;
+}
+.guide-nav-left > summary:hover {
+    color: var(--link-color-hover);
+    background: #2a2d3d;
+    cursor: pointer;
+}
+.guide-nav-left h1 {
+    font-size: 16px;
+    margin: 0;
+    color: var(--text-color);
+}
+.guide-nav-left a {
+    padding: 4px 0;
+    display: inline;
+}
+.guide-nav-left > summary + h1 {
+    padding: .75em 1.5em .75em .5em;
+    font-weight: bold;
+}
+.guide-nav-left p {
+    --font: var(--heading-font);
+    font-size: 16px;
+    padding: .5em 1em;
+    margin: 0;
+    line-height: 1.5em;
+}
+.guide-nav-left details {
+    border-bottom: 1px solid var(--primary-light);
+    border-top: 1px solid var(--primary-light);
+}
+.guide-nav-left details summary {
+    display: block;
+    padding: .5em;
+    margin-left: 0;
+    transition: .1s ease;
+    cursor: pointer;
+}
+.guide-nav-left > h1:not(:nth-child(2)) {
+    padding: .5em;
+    padding-left: 1.5em;
+    margin-left: 0;
+    transition: .1s ease;
+}
+.guide-nav-left details summary h1 {
+    --link-color-hover: var(--goldeneye);
+    padding: 0;
+}
+.guide-nav-left details summary:hover {
+    background: #2A2D3D;
+    cursor: pointer;
+    --text-color: var(--primary-dark);
+}
+.guide-nav-left > details:not(:first-child) {
+    padding-left: 0;
+}
+.guide-nav-left details > summary h1:before {
+    content: "add";
+    font-family: 'Material Symbols Outlined';
+    font-variation-settings: 'FILL' 0;
+    vertical-align: bottom;
+    color: var(--link-color);
+    float: left;
+    padding-bottom: .5em;
+    width: 1em;
+}
+.guide-nav-left details[open] > summary h1:before {
+    content: "remove";
+}
+.guide-nav-left details p {
+    font-size: 14px;
+    padding-left: 1.5em;
+}
+
+.guide-nav-left details details {
+    padding-left: 1em;
+    border: none;
+}
+.guide-nav-left details details summary h1 {
+    font-size: 14px;
+}
+.guide-nav-left details details p {
+    font-size: 12px;
+    padding-left: 1.75em;
+}
+@media only screen and (max-width: 768px) {
+    .guide-nav-left {
+        display: none;
+    }
+    aside.mt-content-side {
+        display: none;
+    }
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+#sc-footer {
+    background-color: var(--duck-purple);
+    color: white;
+    display: grid !important;
+    grid-template-areas: "third fourth first second" "copyright copyright copyright copyright";
+    padding: 2em 3em 5em;
+    width: auto !important;
+    justify-content: center;
+    gap: 1em 75px;
+}
+
+#sc-footer h1 {
+    font-size: 1em;
+    color: white;
+    font-weight: bolder;
+    margin: 0;
+    border-bottom: 1px solid white;
+}
+
+#sc-footer ul {
+    list-style: none;
+    padding-left: 0;
+    font-size: .8em;
+}
+
+#sc-footer li {
+    margin: .25em 0;
+}
+
+#sc-footer section:nth-child(1) {
+    grid-area: first;
+}
+#sc-footer section:nth-child(2) {
+    grid-area: second;
+}
+#sc-footer section:nth-child(3) {
+    grid-area: third;
+}
+#sc-footer section:nth-child(4) {
+    grid-area: fourth;
+}
+#sc-footer small {
+    grid-area: copyright;
+    text-align: center;
+    margin-top: 2em;
+}
+
+#sc-footer small a, #sc-footer small a:visited, #sc-footer small a:hover {
+    color: white;
+}
+
+#sc-footer section a, #sc-footer section a:visited {
+    color: white;
+    text-decoration: none !important;
+}
+
+#sc-footer section a:hover {
+    color: white;
+    text-decoration: underline !important;
+}
+
+#sc-footer section a:hover {
+    text-decoration: none;
+}
+.profile-links svg {
+    height: 1.5em; width: 1.5em; margin-right: .5em;
+}
+.profile-links svg * {
+    fill:var(--duck-purple-light);
+    transition: .3s ease;
+}
+.profile-links a:hover svg * {
+    fill: white;
+}
+#sc-footer .lock:before {
+    content: "lock";
+    font-family: "Material Symbols Outlined";
+    padding-right: .1em;
+    color: gold;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+p.site-title:before {
+    content: "";
+    background-image: url("https://solutioncenter.duckcreek.com/@api/deki/files/187493/duck_only_white_rgb.png?origin=mt-web");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 1.5em;
+    width: 1.5em;
+    float: left;
+    margin-right: .5em;
+}
+header div.elm-header-custom a p.site-title {
+    vertical-align: middle;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    display: block;
+    color: var(--neutral);
+    transition: .3s;
+}
+header div.elm-header-custom a p.site-title:hover {
+    color: var(--link-color-hover);
+}
+header.elm-header {
+    font-family: var(--heading-font);
+    --text-color: var(--neutral);
+    background: var(--primary-dark);
+    display: flex;
+    flex-direction: column;
+}
+header div.elm-header-custom {
+    padding: 1.3rem;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav.header-nav {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2em;
+    font-size: .9em;
+    font-family: var(--heading-font);
+    margin-left: auto;
+}
+nav.header-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+.elm-header-user-nav .elm-nav-container .elm-global-search {
+    border: none;
+    font-size: .8em;
+}
+.elm-header .elm-header-user-nav {
+    padding: 0 0 5px 0;
+}
+.elm-user-pro-member .elm-header-user-nav .elm-user-menu a, .elm-user-pro-member .elm-header-user-nav .elm-user-menu a:visited {
+    color: var(--neutral);
+    font-family: var(--body-font);
+    font-size: .8em;
+}
+
+.elm-user-pro-member .elm-header-user-nav .elm-user-menu .mt-dropdown a:hover {
+    color: var(--primary);
+}
+.elm-user-pro-member .elm-header-user-nav .elm-user-menu .mt-dropdown a, .elm-user-pro-member .elm-header-user-nav .elm-user-menu .mt-dropdown a:visited {
+    color: var(--primary-light);
+}
+
+
+#pageText nav.category-new h5 {
+    padding-top: 0;
+}
+.columbia-page-special .elm-header-user-nav .elm-search-back {
+    display: none !important;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+/*Hide Package Tags in Page Settings*/
+#live-tags-custom > div.live-tag-special-section.live-tag-special-section-packageLevel, #live-tags-custom > div.live-tag-special-section.live-tag-special-section-packageType {
+display: none;
+}
+#live-tags-custom > div:nth-child(8), /* package level */
+#live-tags-custom > div:nth-child(9), /* package type */
+#live-tags-custom > div:nth-child(10) /* submission status */ {
+    display: none;
+}
+
+li.mt-leave-feedback.mt-feedback-rating-item {
+    bottom: 0 !important;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+.toolbar-container {
+    justify-items: end;
+    text-align: right;
+}
+
+.no-touch a.button-hatchery:hover {
+    border-style: inset;
+    color: var(--text-color);
+    filter: invert(.1);
+}
+
+.no-touch a.button-hatchery:visited {
+    color: var(--text-color);
+}
+
+a.button-hatchery {
+    border-radius: 4px;
+    background: var(--goldeneye);
+    padding: 5px 10px;
+    text-align: center;
+    margin-top: 10px;
+    display: inline-block;
+    width: auto;
+    /* max-width: 20ch; */
+    font-weight: bolder;
+    color: var(--text-color);
+    border: 3px var(--goldeneye);
+    border-style: outset;
+    transition: .3s ease;
+}
+
+#version-indicator-template {
+    margin-top: 98px;
+    position: absolute;
+    width: 100%;
+    background: #efefef;
+}
+
+.divider {
+    color: #9c9896;
+}
+#launchpad-toolbar {
+    display: none;
+}
+.elm-header-logo-container {
+     display: none !important;
+ }
+ #suiteduck {
+     max-width: 80px;
+     max-height: 90px;
+     padding: 5px 20px 10px 0;
+     display: inline-block;
+}
+ #sc-wordmark {
+     max-height: 30px;
+     padding-top: .5em;
+}
+ 
+ .social-media-links img {
+    max-width: 18px;
+    margin: 0 5px 0 5px;
+}
+ #sc-logo {
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+ #header-container {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: .5rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+ .toolbar-container {
+     width: 575px;
+    /*height: 85px;*/
+    background: none;
+    float: right;
+    display: inline-block;
+    padding-top: 15px;
+ }
+
+#header-links {
+display: flex;
+flex-direction: row-reverse;
+align-items: center;
+/*justify-content: space-between;
+float: right; */
+}
+
+.header-link {
+padding: 10px;
+font-size: .8em;
+font-weight: bold;
+}
+.header-link a, .header-link.hmpg a {
+color: #4e4a54;
+}
+.header-link a:hover {
+color: #bbb !important;
+}
+.issuealert {
+    text-align: center;
+    font-weight: 600;
+    font-variant-caps: all-petite-caps;
+    background: #2ed59c73;
+}/*]]>*/</style><style type="text/css">/*<![CDATA[*/
+.docTable.docTableOverride thead th {
+    text-transform: none;
+}/*]]>*/</style>
+
+        <link media="screen" type="text/css" rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/seated.css" id="mt-screen-css">
+
+    
+        <link media="print" type="text/css" rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/print.css" id="mt-print-css">
+
+
+    <script type="text/javascript" async="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/js" nonce=""></script><script async="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/pendo.js.download"></script><script async="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/analytics.js.download"></script><script type="application/json" nonce="" id="mt-localizations-draft">
+{"Draft.JS.alert.cancel.button":"OK","Draft.JS.alert.cancel.message":"You can not cancel a draft when the live page is unpublished.","Draft.JS.alert.cancel.title":"This draft cannot be canceled","Draft.JS.alert.publish.button":"OK","Draft.JS.alert.publish.message":"You can not publish a draft of a page with an unpublished parent","Draft.JS.alert.publish.title":"This draft cannot be published","Draft.JS.alert.unpublish.button":"OK","Draft.JS.alert.unpublish.message":"You can not unpublish a page when published subpages are present.","Draft.JS.alert.unpublish.title":"This page cannot be unpublished","Draft.JS.success.cancel":"The draft was successfully deleted.","Draft.JS.success.schedule.publish":"Publication schedule successfully created.","Draft.JS.success.publish":"The draft was successfully published.","Draft.JS.success.unpublish":"The page was successfully unpublished.","Draft.JS.success.unpublish.inherits-schedule\n        Draft.JS.success.unpublish.scheduled-to-publish":"[MISSING: draft.js.success.unpublish.inherits-schedule\n        draft.js.success.unpublish.scheduled-to-publish]","Draft.JS.success.update.schedule.publish":"Publication schedule successfully updated.","Draft.JS.success.update.schedule.unpublish":"[MISSING: draft.js.success.update.schedule.unpublish]","Draft.JS.success.delete.schedule\n        Draft.JS.success.delete.schedule.with.subpages\n        Draft.error.cancel":"[MISSING: draft.js.success.delete.schedule\n        draft.js.success.delete.schedule.with.subpages\n        draft.error.cancel]","Draft.error.publish":"There was an error publishing the draft.","Draft.error.unpublish":"There was an error unpublishing the page.","Draft.message.at":"at","Dialog.ConfirmSave.StrictIdf.title":"Oops!","Dialog.ConfirmSave.StrictIdf.error.missing-template-reference":"This article type requires a template reference widget. Not having one may negatively impact your site and SEO. Please contact CXone Expert support.","Dialog.ConfirmSave.StrictIdf.label.continue":"Proceed anyway","Dialog.ConfirmSave.StrictIdf.label.cancel":"Cancel","Dialog.ConfirmSave.StrictIdf.label.missing-template-reference-help-link":"Learn more about required references","Dialog.ConfirmSave.StrictIdf.error.invalid-idf":"This type of article should not exist at the requested location in the site hierarchy. Proceeding with the requested move may negatively impact site navigation and SEO.","Dialog.ConfirmSave.StrictIdf.label.invalid-idf-help-link":"Learn more about IDF structure","Dialog.EditDraft.page-title":"Create draft","Dialog.Scheduler.Common.label.am":"{0} AM","Dialog.Scheduler.Common.label.pm":"{0} PM","Dialog.Scheduler.Publish.alert-create-draft":"Create","Dialog.Scheduler.Publish.alert-existing-publication-scheduled":"This location has an existing publication schedule applied.  The new page will inherit this new schedule.","Dialog.Scheduler.Publish.alert-modify-message":"This draft is scheduled to be published {0} at {1}. A schedule cannot be modified or deleted less than 15 minutes from its start time.","Dialog.Scheduler.Publish.alert-modify-title":"This schedule cannot be modified","Dialog.Scheduler.Publish.button-close":"Close","Dialog.Scheduler.Publish.button-save":"Save publish schedule","Dialog.Scheduler.Publish.button-go-to-parent":"Go to parent","Dialog.Scheduler.Publish.do-not-have-permission-message":"This page will be published {0} with another page scheduled by {1}. You do not have permission to view this page. Please see {1} to resolve scheduling conflicts.","Dialog.Scheduler.Publish.go-to-parent-message":"This draft will be published {0}, scheduled by {1}. A schedule can only be modified where it was created.","Dialog.Scheduler.Publish.label.f1-link":"Learn about scheduled publishing","Dialog.Scheduler.Publish.page-title":"Publish","Dialog.Scheduler.Unpublish.button-save":"Save unpublish schedule","Dialog.Scheduler.Unpublish.alert-modify-message":"This page is scheduled to be unpublished {0} at {1}. A schedule cannot be modified or deleted less than 15 minutes from its start time.","Dialog.Scheduler.Unpublish.do-not-have-permission-message":"This page will be unpublished {0} with another page scheduled by {1}. You do not have permission to view this page. Please see {1} to resolve scheduling conflicts.","Dialog.Scheduler.Unpublish.go-to-parent-message":"This page will be unpublished {0}, scheduled by {1}. A schedule can only be modified where it was created.","Dialog.Scheduler.Unpublish.page-title":"Unpublish","Page.Dashboard.page-title":"Dashboard"}    </script>    <script type="application/json" nonce="" id="mt-localizations-editor">
+{"Article.Attach.file.upload.toobig":"The file \"{1}\" is too large.  The maximum allowed file size is {0}.","Article.Attach.file.upload.notAllowed":"The selected file can not be uploaded because you do not have permission to upload files of that type.","Article.Attach.file.upload.fileExtension":"You picked a file with an unsupported extension.  Please try again with a valid file.","Article.Common.page-is-restricted-login":"You do not have permission to view this page - please try signing in.","Article.Common.page-save-conflict":"You may have overwritten a concurrent editor's changes. Use this page's <a title=\"Revision History\" target=\"_blank\" href=\"{0}\" >Revision History<\/a> to review.","Article.Error.page-couldnt-be-loaded":"The requested page's contents could not be loaded.","Article.Error.page-save-conflict":"A page already exists at {0}. Navigate to the existing page and edit the page if you wish to modify its contents.","Article.Error.page-save-forbidden":"Your session has expired or you do not have permission to edit this page.","Article.Error.page-title-required":"A page title is required.","Article.edit.summary":"Edit summary","Article.edit.summary-reason":"Why are you making this edit?","Article.edit.enter-reason":"Enter reason (viewable in Site History Report)","Component.YoutubeSearch.error.key-invalid":"Your YouTube API Key was improperly configured. Please review the article at the","Component.YoutubeSearch.error.key-missing":"Your CXone Expert deployment needs to update your YouTube API Key. Details on how to update can be found at the","Component.YoutubeSearch.error.search-failed":"Search failed","Component.YoutubeSearch.info.not-found":"No videos found","Component.YoutubeSearch.label.video-url":"Video URL","Component.YoutubeSearch.placeholder.query":"Video URL or YouTube search query","Dialog.ConfirmCancel.button.continue-editing":"Continue editing","Dialog.ConfirmCancel.button.discard-changes":"Discard changes","Dialog.ConfirmCancel.message.changes-not-saved":"Your changes have not been saved to MindTouch.","Dialog.ConfirmCancel.title":"Discard changes?","Dialog.ConfirmDeleteRedirects.label.delete-redirects-help-link":"Learn more about deleting redirects","Dialog.ConfirmSave.error.redirect":"A redirect exists at this location and will be deleted if you continue. This may negatively impact your site and SEO. Please contact CXone Expert support.","Dialog.ConfirmSave.label.cancel":"Cancel","Dialog.ConfirmSave.label.continue":"Continue","Dialog.ConfirmSave.title":"Delete redirect?","Dialog.ConfirmSave.StrictIdf.error.invalid-idf":"This type of article should not exist at the requested location in the site hierarchy. Proceeding with the requested move may negatively impact site navigation and SEO.","Dialog.ConfirmSave.StrictIdf.error.missing-template-reference-insert":"You've removed the template reference, which is required for this page. Click Insert to reinsert the template reference.","Dialog.ConfirmSave.StrictIdf.label.cancel":"Cancel","Dialog.ConfirmSave.StrictIdf.label.continue":"Proceed anyway","Dialog.ConfirmSave.StrictIdf.label.insert":"Insert","Dialog.ConfirmSave.StrictIdf.label.missing-template-reference-help-link":"Learn more about required references","Dialog.ConfirmSave.StrictIdf.label.invalid-idf-help-link":"Learn more about IDF structure","Dialog.ConfirmSave.StrictIdf.title":"Oops!","Dialog.JS.wikibits-edit-section":"Edit section","Dialog.SaveRequired.button.cancel":"Cancel","Dialog.SaveRequired.button.save":"Save and continue","Dialog.SaveRequired.label.change-title-start":"This page needs a different title than","Dialog.SaveRequired.label.change-title-end":"Please make the correction and try again.","Dialog.SaveRequired.label.new-page-alert":"This operation can not be performed on a page that has not yet been created. In order to do that, we need to quickly save what you have.","Dialog.SaveRequired.title":"Save required","Draft.error.save-unpublished":"You cannot save an unpublished draft at {0}. A published page already exists at that location.","GUI.Editor.alert-changes-made-without-saving":"You have made changes to the content without saving your changes. Are you sure you want to exit this page?","GUI.Editor.error.copy-hint":"To avoid losing your work, copy the page contents to a new file and retry saving again.","GUI.Editor.error.server-error":"A server error has occurred.","GUI.Editor.error.unable-to-save":"We are unable to save this page","Redist.CKE.mt-save.save-to-file-link":"Save the page content to a file","Redist.CKE.mt-autosave.contents-autosaved":"The page contents were autosaved to the browser's local storage {0}","System.API.Error.invalid-redirect":"Cannot create a redirect on a page with sub-pages.","System.API.Error.invalid-redirect-target":"The redirect does not point at a valid page."}    </script>    <script type="application/json" nonce="" id="mt-localizations-file-uploader">
+{"Dialog.Attach.allowed-types":"Allowed file types:","Dialog.Attach.button.upload":"Upload","Dialog.Attach.choose-files-dad":"Choose files to upload or drag and drop files into this window.","Dialog.Attach.max-size":"Maximum upload file size: {0}"}    </script>    <script type="application/json" nonce="" id="mt-localizations-grid-widget">
+{"Article.Common.page-is-restricted-login":"You do not have permission to view this page - please try signing in.","MindTouch.Help.Page.search-unavailable":"Sorry, search is currently unavailable.","MindTouch.Reports.data.empty-grid-text":"No Data Available.","Page.StructuredTags.error-update":"An unknown error occurred."}    </script>    <script type="application/json" nonce="" id="mt-localizations-tree-widget">
+{"Skin.Common.home":"Home","Dialog.Common.error.path-not-found":"The requested page or section could not be loaded. Please update the link.","Dialog.JS.loading":"Loading...","Dialog.JS.loading.copy":"Copying page(s)...","Dialog.JS.loading.insertImage":"Inserting image...","Dialog.JS.loading.move":"Moving page(s)...","Dialog.JS.loading.moveFile":"Moving file...","Dialog.JS.loading.search":"Searching...","MindTouch.Help.Page.in":"in","MindTouch.Help.Page.no-search-results":"Sorry, we can't find what you are looking for.","MindTouch.Help.Page.no-search-try":"Try searching for something else, selecting a category, or try creating a ticket.","MindTouch.Help.Page.retrysearch":"Click here to search the whole site.","MindTouch.Help.Page.search-error-try":"Please try again later.","MindTouch.Help.Page.search-unavailable":"Sorry, search is currently unavailable."}    </script>    <script type="application/json" nonce="" id="mt-localizations-dialog">
+{"Dialog.Common.button.cancel":"Cancel","Dialog.Common.button.ok":"OK","Dialog.Common.label.home":"Home"}    </script>
+    <script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/globals.jqueryv2.2.4.js.download"></script><script type="application/json" id="mt-global-settings" nonce="">{"articleType":"topic-category","attachFileMax":1000,"baseHref":"https:\/\/solutioncenter.duckcreek.com","cacheFingerprint":"117dd477a02dde2b3970d275993eb9cffd7f4525","canFileBeAttached":false,"clientSideWarnings":false,"dntEditorConfig":true,"draftEditable":false,"followRedirects":1,"idfHideTemplateTags":false,"idfVersion":"IDF3","isAiOptimizationTemplateEnabled":false,"isArticleReviewCommunityMembersEnabled":false,"isDraftAllowed":false,"isDraftManagerReportDownloadEnabled":true,"isDraftRequest":false,"isFindAndReplaceUndoEnabled":false,"isGenerativeSearchEnabled":true,"isGenerativeSearchDisclaimerEnabled":false,"isGenerativeSearchStreamResponseToggleEnabled":false,"isGenerativeSearchSearchIconEnabled":false,"isContentAdequacyEnabled":true,"isGenerativeSearchOnDemandEvaluationEnabled":true,"isEditorAiAssistantShortcutsEnabled":false,"isFileDescriptionCaptionableByLlmEnabled":false,"isGoogleAnalyticsEnabled":true,"isGuideTabMultipleClassificationsEnabled":false,"isHawthornThemeEnabled":false,"isIframeSandboxEnabled":false,"isImportExportEnhancementsEnabled":false,"isImportExportMediaEnabled":false,"isExternalImportEnabled":false,"isInteractionAnalyticsDebugEnabled":false,"isDevelopmentModeEnabled":false,"isInteractionAnalyticsEnabled":true,"isKcsEnabledOnPage":false,"isMediaManagerEnabled":false,"isPinnedPagesEnabled":true,"isPinnedPagesEnhancementsEnabled":true,"isReportDownloadEnabled":false,"isSchedulePublishEnabled":true,"isSearchAsYouTypeEnabled":false,"isTinymceAiAssistantEnabled":true,"isSearchInsightsDownloadEnabled":true,"isSentimentAnalysisEnabled":true,"isShowMoreChildrenNodesEnabled":false,"isShowTerminalNodesEnabled":false,"isSkinResponsive":true,"isSmoothScrollEnabled":true,"isTinyMceEnabled":false,"isTreeArticleIconsEnabled":false,"isXhrF1WebWidgetEnabled":true,"isXhrIEMode":false,"kcsEnabled":false,"kcsV2Enabled":false,"kcsV2GuidePrivacySetting":"Semi-Public","learningPathsEnabled":true,"maxFileSize":268435456,"moduleMode":"global","pageEditable":false,"pageId":493596,"pageIsRedirect":false,"pageLanguageCode":"en-US","pageName":"Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes","pageNamespace":"","pageOrderLimit":1000,"pagePermissions":["LOGIN","BROWSE","READ","SUBSCRIBE"],"pageRevision":"5","pageSectionEditable":false,"pageTitle":"Loss Control\/Release documentation\/Loss Control (Classic and RiskHub) release notes\/Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes","pageViewId":"7f97cb21-e9ca-4d78-a44f-324ab61c3fb4","siteId":"site_6404","pathCommon":"\/@style\/common","pathSkin":"\/@style\/elm","relatedArticlesDetailed":true,"removeBlankTemplate":false,"removeDeleteCheckbox":true,"cidWarningOnDelete":true,"scriptParser":2,"sessionId":"NTU5MzQ4NGUtNGFkZS00ZTU4LWFmMmYtOWFkNGIxMmQ3YjgwfDIwMjYtMDMtMTdUMTQ6MjM6MDY=","showAllTemplates":true,"siteAuthoringPageThumbnailManagementEnabled":true,"skinStyle":"columbia.elm","spaceballs2Enabled":false,"strictIdfEnabled":false,"uiLanguage":"en-us","userId":1722,"isPageRedirectPermanent":false,"userIsAdmin":false,"userIsAnonymous":false,"userIsSeated":true,"userName":"Ramesh Deo, Vinod","userPermissions":["LOGIN","BROWSE","READ","SUBSCRIBE","UPDATE","CREATE"],"userSystemName":"vinod.ramesh.deo@duckcreek.com","userTimezone":"-05:00","webFontConfig":{"google":{"families":null}},"apiToken":"xhr_1722_1773757861_37166c5774c3c49cbf20f3b65cfdf027a0336226b7db27b83cb7e4cd50001ecf","displayGenerativeSearchDisclaimer":false,"cognigyFlowsEnabled":false}</script><script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/deki.legacy.js.download"></script><script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/pro.js.download"></script><script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/skin_elm.js.download"></script><script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/pageBootstrap.js.download"></script>
+
+    
+        
+
+<link rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/css">
+<link rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/css2">
+<link rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/css2(1)">
+<link rel="stylesheet" href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/css2(2)">
+<link href="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/css2(3)" rel="stylesheet">
+    
+<script type="text/javascript" nonce="">(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-50688100-1','solutioncenter.duckcreek.com',{allowLinker:true});ga('send','pageview');ga('create','UA-65721316-6','solutioncenter.duckcreek.com',{name:'mtTracker',allowLinker:true});ga('mtTracker.require','linker');ga('mtTracker.set', 'anonymizeIp', true);ga('mtTracker.send','pageview');document.addEventListener('mindtouch-web-widget:f1:loaded',function(e){var t=e.data||{},d=t.widget;d&&''!==t.embedId&&document.addEventListener('mindtouch-web-widget:f1:clicked',function(e){var t=(e.data||{}).href;if(t){var n=document.createElement('a');n.setAttribute('href',t),'expert-help.nice.com'===n.hostname&&(e.preventDefault(),ga('linker:decorate',n),d.open(n.href))}})});</script>
+<style id="mt-fixed-header-styles"></style></head>
+<body class="elm-user-pro-member  columbia-page-main columbia-article-topic-category columbia-browser-chrome columbia-platform-windows columbia-breadcrumb-home-losscontrol-releasedocumentation-losscontrol%28classicandriskhub%29releasenotes-losscontrol%28classicandriskhub%295.1.9.2-july3%2C2025releasenotes columbia-live no-touch columbia-lang-en-us columbia-skin-elm columbia-group-00-internal.all columbia-group-00-accepted columbia-group-duck-creek-developers columbia-group-00-internal.duckcreek columbia-group-00-internal.ondemand columbia-group-00-internal.ondemandupgrade.authors columbia-group-00-internal.ondemand.customerinfo columbia-group-00-internal.beta">
+
+<a class="elm-skip-link" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#elm-main-content" title="Press enter to skip to the main content">Skip to main content</a><main class="elm-skin-container" data-ga-category="Pro | page">
+    <div class="mt-new-features-container" data-ga-action="New feature banner">
+    <div id="mt-new-features-bar">
+        <button class="mt-new-features-close" data-ga-label="Close">Close</button>
+        <a data-ga-label="Link" href="https://expert-help.nice.com/Admin/Release_Notes?source=product" target="_blank">Read about the latest CXone Expert release</a>
+    </div>
+</div>
+
+    <header class="elm-header" id="elm-header">
+        <div class="elm-header-custom">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+//Deki.Fonts.addGoogleFontFamily('Montserrat:r,300,i');
+//Deki.Fonts.addGoogleFontFamily('Oswald:r,b,i');/*]]>*/</script>
+
+
+
+
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+// dashboard redirect
+if (false && window.location.href.indexOf("/Special:Dashboard") >= 0 || false && window.location.href.indexOf("/special:dashboard") >= 0) {
+    window.location='/';
+}
+
+// template directory redirect
+//if ({{!user.admin}} && window.location.href.indexOf("/Template:") >= 0 || {{!user.admin}} && window.location.href.indexOf("/template:") >= 0) {
+//    window.location='/';
+//}/*]]>*/</script>
+
+
+
+<a title="Home" alt="Return to the Solution Center home page." href="https://solutioncenter.duckcreek.com/" rel="internal"><p class="site-title">Solution Center</p></a><nav class="header-nav"><a href="mailto:SolutionCenter@duckcreek.com" target="_blank" rel="external noopener nofollow" class="link-mailto">Contact us</a><a class="internal" href="https://solutioncenter.duckcreek.com/Internal/Staging" rel="internal">Staging</a><a href="https://solutioncenter.duckcreek.com/Staging/Documentation_Hatchery" target="_blank" rel="external noopener nofollow">Write an article</a></nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+//This controls the hamburger menu for the toolbar//
+$(function() {
+    $("a[href='#toolbarExpand']").click(function(e) {
+        $(".toolbar").toggleClass("toolbarOpen");
+        e.preventDefault();
+    });
+});
+
+//This controls the hamburger menu for the launchpad//
+$(function() {
+    $("a[href='#launchpadtoolbarExpand']").click(function(e) {
+        $(".launchpadtoolbar").toggleClass("launchpadtoolbarOpen");
+        e.preventDefault();
+    });
+});/*]]>*/</script>
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+(function(apiKey){
+    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
+    v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
+        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+        y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+})('fe0821bb-65ab-469f-5eaa-349f370e8596');/*]]>*/</script>
+
+
+
+<script>/*<![CDATA[*/var MtUser=1722/*]]>*/</script><script>/*<![CDATA[*/var uEmail='vinod.ramesh.deo@duckcreek.com';/*]]>*/</script>
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+pendo.initialize({
+            visitor: {
+                id: MtUser, 
+                email: uEmail
+                // full_name: 'user.displayname'    // Recommended if using Pendo Feedback
+                // role:         // Optional
+
+                // You can add any additional visitor level key-values here,
+                // as long as it's not one of the above reserved names.
+            },
+
+            account: {
+                // id: 'account.ID', 
+                // name: 'groupname'        // Optional
+                // is_paying:    // Recommended if using Pendo Feedback
+                // monthly_value:// Recommended if using Pendo Feedback
+                // planLevel:    // Optional
+                // planPrice:    // Optional
+                // creationDate: // Optional
+
+                // You can add any additional account level key-values here,
+                // as long as it's not one of the above reserved names.
+            }
+        });
+console.log(MtUser);/*]]>*/</script>
+
+
+        </div>
+        <div class="elm-nav mt-translate-module" hidden="true">
+            <div class="elm-nav-container mt-translate-container"></div>
+        </div>
+        <div class="elm-header-logo-container">
+            <a href="https://solutioncenter.duckcreek.com/" title="Duck Creek Solution Center" aria-label="Link to home"><img src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/1510347610-logo.png" alt="Duck Creek Solution Center"></a>
+        </div>
+        
+        <nav class="elm-header-user-nav elm-nav" role="navigation">
+            <div class="elm-nav-container">
+                <ol>
+                    <li class="elm-global-search" data-ga-action="Header search"><a class="mt-icon-site-search mt-toggle-form" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" title="Search site">Search site</a>
+<div class="mt-quick-search-container mt-toggle-form-container">
+    <form action="https://solutioncenter.duckcreek.com/Special:Search">
+        <input name="qid" id="mt-qid-skin" type="hidden" value="">
+        <input name="fpid" id="mt-search-filter-id" type="hidden" value="230">
+        <input name="fpth" id="mt-search-filter-path" type="hidden">
+        <input name="path" id="mt-search-path" type="hidden" value="">
+
+        <label class="mt-label" for="mt-site-search-input">
+            Search
+        </label>
+        <input class="mt-text mt-search search-field" name="q" id="mt-site-search-input" placeholder="How can we help you?" type="search">
+        <button class="mt-button ui-button-icon mt-icon-site-search-button search-button" type="submit">
+            Search
+        </button>
+    </form>
+</div>
+<div class="elm-search-back"><a class="mt-icon-browser-back" data-ga-label="Browse back" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" id="mt-browser-back" title="Go back to previous article">Go back to previous article</a></div>
+</li>
+                    <li class="elm-user-menu"><ol class="mt-user-menu" data-ga-action="Pro menu">
+
+        <li class="mt-page-options mt-mobile-hide">
+            <a class="mt-icon-page-options mt-dropdown-link" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" title="Click to see available content options" data-ga-label="Page options menu toggle">
+                Options
+            </a>
+            <ol class="mt-user-menu-container mt-dropdown" style="">
+                    <li class="mt-user-menu-copy-page">
+                        <a class="mt-icon-copy-page page-copy-launcher" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" title="Click to copy this article/hierarchy to a new location" data-ga-label="Copy page">
+                            Copy
+                        </a>
+                    </li>
+                
+            </ol>
+        </li>
+        <li class="mt-site-tools mt-mobile-hide">
+        <a class="mt-icon-site-tools mt-dropdown-link" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" title="Click to see available site tools" data-ga-label="Site tools menu toggle">
+            Site tools
+        </a>
+        <ol class="mt-user-menu-container mt-dropdown" style="">
+            <li class="mt-user-menu-dashboard">
+                <a class="mt-icon-dashboard" href="https://solutioncenter.duckcreek.com/Special:Dashboard" title="Click to go to your site Dashboard" data-ga-label="Dashboard link">
+                    Dashboard
+                </a>
+            </li>
+        </ol>
+    </li>
+    <li class="mt-user-menu-user">
+        <a class="mt-icon-user-menu mt-dropdown-link" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" title="" data-ga-label="User menu toggle">
+            Ramesh Deo, Vinod
+        </a>
+        <ol class="mt-user-menu-container mt-dropdown" style="">
+                <li class="mt-user-menu-my-contributions mt-mobile-hide">
+                    <a class="mt-icon-my-contributions" href="https://solutioncenter.duckcreek.com/Special:Dashboard/ContributionReports/UserContributions?user=vinod.ramesh.deo%40duckcreek.com" title="Click to see your contribution history" data-ga-label="User contributions link">
+                        My contributions
+                    </a>
+                </li>
+                <li class="mt-user-menu-preferences">
+                    <a class="mt-icon-user-preferences" href="https://solutioncenter.duckcreek.com/Special:Preferences" title="Click to change your user preferences" data-ga-label="User preferences link">
+                        My preferences
+                    </a>
+                </li>
+                <li class="mt-user-menu-my-subscriptions mt-mobile-hide">
+                    <a class="mt-icon-my-subscriptions" href="https://solutioncenter.duckcreek.com/Special:Subscriptions" title="Click to manage your notifications" data-ga-label="User subscriptions link">
+                        My subscriptions
+                    </a>
+                </li>
+            <li class="mt-user-menu-signout">
+                <a class="mt-icon-user-sign-out" href="https://solutioncenter.duckcreek.com/Special:UserLogout?returntotitle=Loss_Control%2FRelease_documentation%2FLoss_Control_%28Classic_and_RiskHub%29_release_notes%2FLoss_Control_%28Classic_and_RiskHub%29_5.1.9.2_-_July_3%2C_2025_release_notes" title="Click to sign out of this site" data-ga-label="Sign out">
+                    Sign out
+                </a>
+            </li>
+        </ol>
+    </li>
+</ol>
+<script type="application/json" nonce="" id="mt-localizations-user-menu-notices">
+{"Component.UserMenuNotices.button.bulk-action.cancel":"Cancel","Component.UserMenuNotices.button.bulk-action.confirm":"Confirm","Component.UserMenuNotices.button.delete":"Delete","Component.UserMenuNotices.button.mark-read":"Mark Read","Component.UserMenuNotices.button.mark-unread":"Mark Unread","Component.UserMenuNotices.label":"Notifications","Component.UserMenuNotices.label.header-unread":"unread","Component.UserMenuNotices.label.header":"Notifications","Component.UserMenuNotices.label.header.delete-all":"Delete all","Component.UserMenuNotices.label.header.mark-all-read":"Mark all read","Component.UserMenuNotices.label.notice-list.empty":"You have no notifications","Component.UserMenuNotices.label.notice-list.initial-state":"Loading notifications, hang tight ...","Component.UserMenuNotices.label.open":"Open","Component.UserMenuNotices.tooltip":"Click to see notifications"}</script>
+
+
+</li>
+                </ol>
+            </div>
+        </nav>
+        <nav class="elm-header-global-nav elm-nav" data-ga-action="Elm Navigation">
+            <div class="elm-nav-container">
+                <button class="elm-hierarchy-trigger mt-hierarchy-trigger ui-button-icon mt-icon-hierarchy-trigger-closed" title="Expand/collapse global hierarchy" data-ga-label="Hierarchy Toggle - Tree View">
+                    Expand/collapse global hierarchy
+                </button>
+                <ol class="mt-breadcrumbs" data-ga-action="Breadcrumbs">
+                        <li>
+                            <a href="https://solutioncenter.duckcreek.com/" data-ga-label="Breadcrumb category">
+                                <span class="mt-icon-article-category mt-icon-article-home"></span>
+                                    Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://solutioncenter.duckcreek.com/Loss_Control" data-ga-label="Breadcrumb category">
+                                <span class="mt-icon-article-category"></span>
+                                    Loss Control
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation" data-ga-label="Breadcrumb category">
+                                <span class="mt-icon-article-category"></span>
+                                    Release documentation
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes" data-ga-label="Breadcrumb category">
+                                <span class="mt-icon-article-category"></span>
+                                    Loss Control (Classic and RiskHub) release notes
+                            </a>
+                        </li>
+                        <li class="mt-breadcrumbs-current-page">
+                            <span class="mt-icon-article-category"></span>
+                            Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes
+                        </li>
+                </ol>
+                <button class="mt-icon-hierarchy-mobile-view-trigger ui-button-icon mt-icon-hierarchy-mobile-trigger-closed" title="Expand/collapse global location" data-ga-label="Hierarchy Toggle - Breadcrumb Expand/Collapse">
+                    Expand/collapse global location
+                </button>
+            </div>
+        </nav>
+        <nav class="elm-nav elm-header-hierarchy">
+            <div class="elm-nav-container">
+                <div class="elm-hierarchy mt-hierarchy"></div>
+            </div>
+        </nav>        <div class="elm-nav mt-review-banner" hidden="true"></div>
+            
+            
+                <script type="application/json" nonce="" id="mt-localizations-schedule-publish">
+{"Dialog.Common.button.close":"Close","Dialog.Scheduler.Publish.apply-subpages":"Apply schedule to all subpages","Dialog.Scheduler.Publish.button-now":"Publish","Dialog.Scheduler.Publish.button-save":"Save publish schedule","Dialog.Scheduler.Publish.button-update":"Update publish schedule","Dialog.Scheduler.Publish.button-delete":"Delete schedule","Dialog.Scheduler.Publish.label.local-browser":"Local Browser Time","Dialog.Scheduler.Publish.label.date-message":"This draft will be published on:","Dialog.Scheduler.Publish.label.date-sub-pages-message":"This draft and subpages will be published on:","Dialog.Scheduler.Publish.label.later":"Publish later","Dialog.Scheduler.Publish.label.now":"Publish now","Dialog.Scheduler.Publish.label.select-date":"Select Date","Dialog.Scheduler.Publish.label.utc":"GMT - Greenwich Mean Time","Dialog.Scheduler.Publish.page-title":"Publish","Dialog.Scheduler.Common.label.am":"{0} AM","Dialog.Scheduler.Common.label.pm":"{0} PM","Dialog.Scheduler.Unpublish.button-now":"Unpublish","Dialog.Scheduler.Unpublish.button-save":"Save unpublish schedule","Dialog.Scheduler.Unpublish.button-update":"Update unpublish schedule","Dialog.Scheduler.Unpublish.label.date-message":"This page will be unpublished on:","Dialog.Scheduler.Unpublish.label.date-sub-pages-message":"This page and subpages will be unpublished on:","Dialog.Scheduler.Unpublish.label.later":"Unpublish later","Dialog.Scheduler.Unpublish.label.now":"Unpublish now","Dialog.Scheduler.Unpublish.label.now-subpages":"Unpublish now (to unpublish this page now you must first unpublish all its subpages)","Dialog.Scheduler.Unpublish.page-title":"Unpublish"}</script>
+
+
+
+    </header>
+    <article class="elm-content-container" id="elm-main-content" tabindex="-1">
+        <header>
+            <div id="flash-messages"><div class="dekiFlash"></div></div>
+                <div id="mt-kcs-workflow"></div>
+                
+                    
+<h1 id="title" data-title-editor-available="false">
+        <div id="deki-page-title" class="ui-state-noedit">
+            <div class="state-view">
+                <span class="title">Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes</span>
+            </div>
+        </div>
+</h1>
+
+                    
+
+                    
+                        <ol class="elm-meta-data elm-meta-top" data-ga-action="Page actions">
+                            <li class="elm-last-modified"><dl class="mt-last-updated-container">
+    <dt class="mt-last-updated-label">Last updated</dt>
+    <dd>
+        <span class="mt-last-updated" data-timestamp="2025-08-19T15:55:22Z">Aug 19, 2025, 9:25 PM</span>
+            by Harkavy, Roger
+    </dd>
+</dl>
+</li>
+                            <li class="elm-page-restriction"><dl class="mt-page-restriction-container mt-restriction-private">
+    <dt class="mt-page-restriction-label">Page restriction</dt>
+    <dd class="mt-page-restriction">Private</dd>
+</dl>
+</li>
+                            <li class="elm-meta-icons">
+                                <ul>
+                                    <li id="elm-pin-page"><button aria-label="Pin Page" class="mt-pin-page mt-icon-unpinned" title="Pin Page"></button></li>
+<script type="application/json" nonce="" id="mt-localizations-pin-page">
+{"Component.PinPage.button.label.pin-page":"Pin Page","Component.PinPage.button.label.unpin-page":"Unpin Page","Component.PinPage.message.unable-to-pin-page":"Unable to pin page: {0}","Component.PinPage.message.unable-to-unpin-page":"Unable to unpin page"}    </script>
+<script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/ui.pinPage.js.download"></script>
+                                    <li class="elm-page-notifications"><div id="deki-page-alerts">
+    <div class="toggle">
+            <a href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#" class="mt-icon-page-notification off" data-ga-label="Subscription widget toggle" title="Page notifications">
+                <span>
+                    Page notifications
+                </span>
+                <span class="status">
+                    Off
+                </span>
+            </a>
+    </div>
+    <form class="options" style="display: none;">
+        <div class="legend">
+                <a data-ga-label="Subscription help link" href="https://expert-help.nice.com/@go/cid/subscriptions" class="mt-f1-success mt-f1-link">
+                    <span class="ui-icon mt-icon-f1-link"></span>
+                </a>
+            Receive email notifications for<br>
+            (live and drafts):
+        </div>
+        <ul class="mt-subscription-options">
+                <li class="self">
+                    <input class="mt-checkbox" data-ga-label="Subscribe to page" type="radio" name="alert" id="deki-page-alerts-self" value="1">
+                    <label class="mt-label-checkbox" data-ga-label="Subscribe to page" for="deki-page-alerts-self">This page only</label>
+                </li>
+                <li class="tree">
+                    <input class="mt-checkbox" data-ga-label="Subscribe to tree" type="radio" name="alert" id="deki-page-alerts-tree" value="2">
+                    <label class="mt-label-checkbox" data-ga-label="Subscribe to tree" for="deki-page-alerts-tree">This page and all subpages</label>
+                </li>
+                <li class="off">
+                    <input class="mt-checkbox" data-ga-label="Unsubscribe" type="radio" name="alert" id="deki-page-alerts-off" checked="checked" value="0">
+                    <label class="mt-label-checkbox" data-ga-label="Unsubscribe" for="deki-page-alerts-off">Turn OFF notifications for this page</label>
+                </li>
+        </ul>
+    </form>
+</div>
+
+</li>
+                                    <li class="elm-pdf-export"><a data-ga-label="PDF" href="https://solutioncenter.duckcreek.com/@api/deki/pages/493596/pdf/Loss%2bControl%2b(Classic%2band%2bRiskHub)%2b5.1.9.2%2b-%2bJuly%2b3%252C%2b2025%2brelease%2bnotes.pdf?stylesheet=default" rel="nofollow" target="_blank" title="Export page as a PDF">
+    <span class="mt-icon-article-pdf"></span>Save as PDF
+</a></li>
+                                    <li class="elm-social-share"></li>
+                                </ul>
+                            </li>
+                        </ol>
+                    
+        </header>
+                <header class="mt-content-header">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</header>
+                <aside class="mt-content-side"><style>/*<![CDATA[*/.mt-content-side {display:none;}/*]]>*/</style>
+
+
+
+
+
+<script type="text/javascript">/*<![CDATA[*/
+/*document.addEventListener('DOMContentLoaded', function () {
+    // Select all guide navigation details elements
+    const guideNav = document.querySelector('.guide-nav-left');
+    const detailsElements = guideNav.querySelectorAll('details');
+
+    // Retrieve the state from localStorage and apply it
+    detailsElements.forEach((details, index) => {
+        const state = localStorage.getItem(`guideNavDetailsState_${index}`);
+        if (state === 'open') {
+            details.setAttribute('open', 'true');
+        } else {
+            details.removeAttribute('open');
+        }
+
+        // Add a toggle event listener to store state on change
+        details.addEventListener('toggle', () => {
+            if (details.open) {
+                localStorage.setItem(`guideNavDetailsState_${index}`, 'open');
+            } else {
+                localStorage.setItem(`guideNavDetailsState_${index}`, 'closed');
+            }
+        });
+    });
+
+    // Persist the state of the guide-nav-left itself
+    const guideNavState = localStorage.getItem('guideNavLeftState');
+    if (guideNavState === 'collapsed') {
+        guideNav.removeAttribute('open');
+    } else {
+        guideNav.setAttribute('open', 'true');
+    }
+
+    guideNav.addEventListener('toggle', () => {
+        if (guideNav.open) {
+            localStorage.setItem('guideNavLeftState', 'expanded');
+        } else {
+            localStorage.setItem('guideNavLeftState', 'collapsed');
+        }
+    });
+});/*]]>*/</script>
+
+<script type="text/javascript">/*<![CDATA[*/
+document.addEventListener('DOMContentLoaded', function () {
+    // Select the guide navigation sidebar
+    const guideNav = document.querySelector('.guide-nav-left');
+
+    // Persist only the state of the guide-nav-left itself (not inner details)
+    const guideNavState = localStorage.getItem('guideNavLeftState');
+    if (guideNavState === 'collapsed') {
+        guideNav.removeAttribute('open');
+    } else {
+        guideNav.setAttribute('open', 'true');
+    }
+
+    guideNav.addEventListener('toggle', () => {
+        if (guideNav.open) {
+            localStorage.setItem('guideNavLeftState', 'expanded');
+        } else {
+            localStorage.setItem('guideNavLeftState', 'collapsed');
+        }
+    });
+});/*]]>*/</script>
+
+<p>&nbsp;</p>
+</aside>
+            <aside id="mt-toc-container" data-title="Table of contents" data-collapsed="true" class="mt-toggle-container"><button class="mt-toggle mt-summary-toggle ui-button-icon mt-toggle-expand" type="button">Table of contents</button>
+                <nav class="mt-toc-content mt-collapsible-section" style="border: none; margin: 0px; max-height: 0px; overflow: hidden; padding: 0px; transition: max-height cubic-bezier(0, 1, 0, 1);">
+                    <ol><li><a href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#Overview" rel="internal">Overview</a><ol><li><a href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#Improvements" rel="internal">Improvements</a></li></ol></li></ol>
+                </nav>
+            </aside>
+            <section class="mt-content-container">
+                <div id="mt-review-workflow"></div>
+                <div id="pageText">
+                    
+
+<script type="text/javascript">/*<![CDATA[*/
+$(function() {
+    $('.EXPAND_COLLAPSE').find('dt').on('click', function() {
+        $(this).next().toggle('350');   
+     });
+});/*]]>*/</script>
+
+
+
+
+<div class="mt-style-conditional style-wrap" title="Conditional content (Internal)">
+<p></p><div class="note-restricted-conditional style-wrap" title="Access Restricted Note"><p>This article uses special permissions to display confidential information intended for Duck Creek employees only alongside information intended for customers and partners. To ensure that this highly confidential information is not inadvertently exposed to customers or partners, do not share this article via PDF or screenshot. Instead, provide a direct URL to this article.</p></div><p></p>
+</div>
+
+<div mt-section-origin="Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3,_2025_release_notes" class="mt-section" id="section_1"><span id="Overview"></span><h2 class="editable">Overview</h2>
+
+<table border="1" cellpadding="1" cellspacing="1" class="doctable" style="width: 50%;">
+    <tbody>
+        <tr>
+            <th style="width:157px;">
+            <p>Release Date</p>
+            </th>
+            <td style="width:241px;">
+            <p>July 3, 2025</p>
+            </td>
+        </tr>
+        <tr>
+            <th style="width:157px;">
+            <p>Release Version</p>
+            </th>
+            <td style="width:241px;">
+            <p>5.1.9.2</p>
+            </td>
+        </tr>
+        <tr>
+            <th style="width:157px;">Improvements</th>
+            <td style="width:241px;">
+            <p>1</p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div mt-section-origin="Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3,_2025_release_notes" class="mt-section" id="section_2"><span id="Improvements"></span><h3 class="editable"><span style="font-size:2rem;">Improvements</span></h3>
+
+<p>This release includes the following improvements.</p>
+
+<table class="docTable" title="SC Table">
+    <thead>
+        <tr>
+            <th style="width:5.5%;">
+            <p>ID</p>
+            </th>
+            <th style="width:10%;">Customer Ticket</th>
+            <th>
+            <p>Description</p>
+            </th>
+            <th>
+            <p>Documentation</p>
+            </th>
+        </tr>
+        <tr>
+            <th colspan="4">Classic &amp; RiskHub</th>
+        </tr>
+        <tr>
+            <td>NOONE-73</td>
+            <td>N/A</td>
+            <td>Improved sync process reliability, traceability, and configuration flexibility.</td>
+            <td>
+            <p>N/A</p>
+            </td>
+        </tr>
+    </thead>
+</table>
+</div></div>
+
+                </div>
+                    <footer class="mt-content-footer">
+
+
+</footer>
+            </section>
+
+        
+            <footer class="elm-content-footer">
+                    <ol class="elm-meta-data elm-meta-article-navigation">
+                        <li class="elm-back-to-top"><a class="mt-icon-back-to-top" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3%2C_2025_release_notes#title" id="mt-back-to-top" title="Jump back to top of this article">Back to top</a></li>
+                        <li class="elm-article-pagination"><ul class="mt-article-pagination" data-ga-action="Article pagination bottom">
+    <li class="mt-pagination-previous">
+
+            <a class="mt-icon-previous-article" data-ga-label="Previous page" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.3_-_July_10%2C_2025_release_notes" title="Loss Control (Classic and RiskHub) 5.1.9.3 - July 10, 2025 release notes"><span>Loss Control (Classic and RiskHub) 5.1.9.3 - July 10, 2025 release notes</span></a>
+    </li>
+        <li class="mt-pagination-next">
+                <a class="mt-icon-next-article" data-ga-label="Next page" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.1_-_June_13%2C_2025_release_notes" title="Loss Control (Classic and RiskHub) 5.1.9.1 - June 13, 2025 release notes"><span>Loss Control (Classic and RiskHub) 5.1.9.1 - June 13, 2025 release notes</span></a>
+        </li>
+</ul>
+</li>
+                    </ol>
+                    <div class="elm-article-feedback"><div class="mt-feedback-rating-container" data-ga-action="Page rating" data-page-revision="5" data-use-local-storage="false"><ul class="mt-feedback-rating-controls"><li class="mt-feedback-rating-message mt-feedback-rating-item">Was this article helpful?</li><li class="mt-rating-yes mt-feedback-rating-item"><button class="mt-rating-button-yes mt-feedback-rating-button ui-button-icon mt-icon-rating-yes" data-ga-label="Rate">Yes</button></li><li class="mt-rating-no mt-feedback-rating-item"><button class="mt-rating-button-no mt-feedback-rating-button ui-button-icon mt-icon-rating-no" data-ga-label="Rate">No</button></li><li class="mt-leave-feedback mt-feedback-rating-item"><button class="mt-feedback-button mt-feedback-rating-button ui-button-icon mt-icon-leave-feedback" data-ga-label="Feedback toggle">Leave feedback</button></li><li class="mt-last-rating-date mt-feedback-rating-item"></li></ul><div id="mt-feedback-flash-message"></div><div class="mt-feedback-form" data-path="Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes/Loss_Control_(Classic_and_RiskHub)_5.1.9.2_-_July_3,_2025_release_notes" data-user-email="vinod.ramesh.deo@duckcreek.com" data-page-title="Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes" data-site-url="https://solutioncenter.duckcreek.com/"><fieldset class="ui-dform-fieldset"><legend class="ui-dform-legend">Leave feedback</legend><div class="mt-field"><label class="mt-feedback-improve-label ui-dform-label" for="textarea-feedback">How can we improve this article?</label><textarea autocomplete="off" class="mt-feedback-improve-description ui-dform-textarea" id="textarea-feedback" spellcheck="false"></textarea></div><div class="mt-field"><input class="mt-feedback-consent-checkbox ui-dform-checkbox" data-ga-label="Feedback consent" id="mt-feedback-consent" type="checkbox"><label class="mt-feedback-consent-label mt-label-checkbox" data-ga-label="Feedback consent" for="mt-feedback-consent">Yes, you may contact me about this feedback.</label></div><div class="mt-field mt-submit"><button class="mt-feedback-submit mt-disabled ui-button ui-button-primary" data-ga-label="Submit feedback" id="deki-feedback-send">Submit feedback</button></div></fieldset></div></div><script type="application/json" id="mt-localizations-feedback-rating">/*<![CDATA[*/{"Page.FeedbackRating.label.last-rated":"-- You last rated this article on {0}","Page.FeedbackRating.message.contact.no":"No","Page.FeedbackRating.message.contact.yes":"Yes","Page.FeedbackRating.message.submit.error":"An error occurred while attempting to send your feedback.  Please try again at a later time.","Page.FeedbackRating.message.submit.success":"Your feedback has been successfully submitted.  You can submit more feedback at any time."}/*]]>*/</script></div>
+                    <div class="elm-related-articles-container"><h2 class="mt-related-articles-header">Recommended articles</h2>
+<ol class="mt-related-listings-container" data-ga-action="related">
+<li class="mt-related-listing mt-related-listing-detailed"><a class="mt-related-listing-link" href="https://solutioncenter.duckcreek.com/Loss_Control/Release_documentation/Loss_Control_(Classic_and_RiskHub)_release_notes" title="Loss Control (Classic and RiskHub) release notes" data-ga-label="related-link-detailed-1"><span class="mt-related-listing-link-icon mt-icon-article-topic-category"></span><span class="mt-related-listing-link-text">Loss Control (Classic and RiskHub) release notes</span></a><span class="mt-related-listing-link-overview">Release notes for Duck Creek Loss Control (RiskHub).</span></li></ol>
+<script type="application/json" nonce="" id="mt-localizations-related-pages">
+{"Skin.Columbia.label.no-recommended-articles":"There are no recommended articles."}</script></div>
+                    <ol class="elm-meta-data elm-meta-bottom">
+                        <li class="elm-classifications">        <dl class="mt-classification mt-classification-article-category" data-ga-action="Tag navigation">
+            <dt class="mt-classification-label">Article Type</dt>
+            <dd class="mt-classification-value"><a href="https://solutioncenter.duckcreek.com/Special:Search?tags=article%3Atopic-category" data-ga-label="Classification">Category</a></dd>
+        </dl>
+        <dl class="mt-classification mt-classification-version-loss control" data-ga-action="Tag navigation">
+            <dt class="mt-classification-label">Version</dt>
+            <dd class="mt-classification-value"><a href="https://solutioncenter.duckcreek.com/Special:Search?tags=version%3Alsscntrl" data-ga-label="Classification">Loss Control</a></dd>
+        </dl>
+</li>
+                        <li class="elm-tags"><dl class="mt-tags">
+    <dt class="mt-tag-label">Tags</dt>
+    <dd class="mt-tag-value">
+        <ol class="mt-tags-list" data-ga-action="Tag navigation">
+                <li class="mt-tag-link mt-tag-release-documentation" rel="nofollow"><a href="https://solutioncenter.duckcreek.com/Special:Search?tags=release+documentation" data-ga-label="Free tag"> release documentation</a></li>
+                <li class="mt-tag-link mt-tag-showtoc" rel="nofollow"><a href="https://solutioncenter.duckcreek.com/Special:Search?tags=showTOC" data-ga-label="Free tag"> showTOC</a></li>
+        </ol>
+    </dd>
+</dl></li>
+                    </ol>
+                
+                    <section id="attachments" class="elm-attachments"><h2 class="mt-attachments-header">Attachments</h2>
+
+        <div class="mt-attachments-buttons-wrapper">
+            <button id="attach-new-file" class="attach-file-dialog-launcher ui-button ui-button-primary mt-disabled" type="button" disabled="">
+                Attach a file
+            </button>
+            <div id="attach-file-max-warning" class="mt-hide" style="display: none;">The maximum number of files has been attached to this page.</div>
+        </div>
+    <div class="mt-grid"><div id="fileAttachTable_wrapper" class="dataTables_wrapper no-footer"><div class="fg-toolbar ui-toolbar ui-widget-header ui-helper-clearfix ui-corner-tl ui-corner-tr"><div id="fileAttachTable_filter" class="dataTables_filter"><label>Search file names and descriptions:<input type="search" class="" placeholder="" aria-controls="fileAttachTable"></label></div></div><div class="dataTables_scroll"><div class="dataTables_scrollHead ui-state-default" style="width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1924px; padding-right: 0px;"><table class="grid ui-table mt-grid-table dataTable no-footer" data-attach-file-max="1000" data-attach-file-user-tz="-05:00" data-attach-file-page-id="493596" style="width: 1924px; margin-left: 0px;" role="grid"><thead><tr role="row"><th class="file-name all control sorting ui-state-default sorting_asc" tabindex="0" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 703px;" aria-sort="ascending" aria-label="File: activate to sort column descending"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">File</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></th><th class="file-date min-tablet-l sorting ui-state-default" tabindex="0" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 482px;" aria-label="Last modified: activate to sort column ascending"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Last modified</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="file-size min-desktop sorting ui-state-default" tabindex="0" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 284px;" aria-label="Size: activate to sort column ascending"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Size</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th><th class="file-addedby min-desktop sorting ui-state-default" tabindex="0" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 454px;" aria-label="Added by: activate to sort column ascending"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Added by</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></th></tr></thead></table></div></div><div class="dataTables_scrollBody" style="width: 100%;"><table id="fileAttachTable" class="grid ui-table mt-grid-table dataTable no-footer dtr-inline" data-attach-file-max="1000" data-attach-file-user-tz="-05:00" data-attach-file-page-id="493596" style="width: 100%;" role="grid"><thead><tr role="row" style="height: 0px;"><th class="file-name all control sorting ui-state-default sorting_asc" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 703px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-sort="ascending" aria-label="File: activate to sort column descending"><div class="dataTables_sizing" style="height:0;overflow:hidden;"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">File</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-triangle-1-n"></span></div></div></th><th class="file-date min-tablet-l sorting ui-state-default" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 482px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Last modified: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Last modified</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></div></th><th class="file-size min-desktop sorting ui-state-default" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 284px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Size: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Size</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></div></th><th class="file-addedby min-desktop sorting ui-state-default" aria-controls="fileAttachTable" rowspan="1" colspan="1" style="width: 454px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Added by: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;"><div class="DataTables_sort_wrapper"><span class="mt-datatables-header-title">Added by</span><span class="DataTables_sort_icon css_right ui-icon ui-icon-carat-2-n-s"></span></div></div></th></tr></thead>
+    <tbody><tr class="odd"><td valign="top" colspan="4" class="dataTables_empty">No files attached.</td></tr></tbody></table></div></div><div class="fg-toolbar ui-toolbar ui-widget-header ui-helper-clearfix ui-corner-bl ui-corner-br"></div></div></div>
+<script type="application/json" nonce="" id="mt-localizations-file-attachments">
+{"Article.Attach.table-header-file":"File","Article.Attach.table-header-addedby":"Added by","Article.Attach.table-header-size":"Size","Article.Attach.table-header-date":"Last modified","Article.Attach.table-header-menu":"Options","Article.Attach.table-header-ignore-on-import":"Ignore on import","Article.Attach.table-ignore-on-import-status-on":"on","Article.Attach.table-ignore-on-import-status-off":"off","Article.Attach.table-version-link":"Click to see all versions","Article.Attach.menu.move":"Move\/Rename file","Article.Attach.menu.attachnew":"Upload new","Article.Attach.menu.delete":"Delete","Article.Attach.menu.description":"Edit file description","Article.Attach.menu-confirm-delete":"Are you sure you want to delete {0}?","Article.Attach.file-deleted":"Your file was deleted.","Article.Attach.file.upload.toobig":"The file \"{1}\" is too large.  The maximum allowed file size is {0}.","Article.Attach.table-file-title":"{0}","Article.Attach.table-description-button":"Save","Article.Attach.table-description-cancel":"Cancel","Article.Attach.table-description-blank":"(no description)","Article.Attach.table-description-character":"Warning: {0} characters left","Article.Attach.table-description-character-warning":"Limit exceeded: {0} characters will be truncated","Article.Attach.table-search-text":"Search file names and descriptions:","Article.Attach.error.multiple-upload":"{0} files failed to upload.","Article.Attach.error.multiple.truncation":"{0} files will not be uploaded because the maximum number number of {1} files allowed will be reached.","Article.Attach.error.upload.truncation":"Too many files","Article.Attach.error.multiple.truncated":"The following files will not be added:","Article.Attach.error.limit-reached":"The maximum number of {0} files have been attached to this page.","Article.Attach.error.upload.title":"Upload error","Article.Attach.error.upload.button":"OK, Upload {0} files","Article.Attach.dialog.delete.title":"Delete file?","Article.Attach.dialog.delete.cancel":"Cancel","Article.Attach.label.maxfiles":"The maximum number of files has been attached to this page.","Article.Attach.table-empty":"No files attached","Article.Attach.error.upload":"The file failed to upload.","Article.Attach.error.file-delete":"An error occurred while attempting to delete {0}.","Article.Attach.file.upload.notAllowed":"The selected file can not be uploaded because you do not have permission to upload files of that type.","Article.Attach.file.upload.fileExtension":"You picked a file with an unsupported extension.  Please try again with a valid file.","Article.Attach.grid.empty-grid-text":"No files attached.","Article.Attach.title.open-in-media-manager":"Open in Media Manager","Draft.JS.alert.upload-not-allowed.message":"You may not attach a file directly to the published page, please use the draft editor.","Draft.JS.alert.upload-not-allowed.title":"Attachment cannot be added","Draft.JS.alert.upload-not-allowed.button":"OK","Dialog.JS.alert.upload-not-allowed.message":"You do not have permission to attach a file to this page.","Dialog.JS.alert.upload-not-allowed.title":"Attachment cannot be added","Dialog.JS.alert.upload-not-allowed.button":"OK","Skin.Common.header-attachments":"Attachments","System.API.Error.file_upload_error":"An error occurred while uploading."}</script>
+
+</section>
+                
+            </footer>
+        
+    </article>
+    <footer class="elm-footer">
+        <nav class="elm-footer-siteinfo-nav elm-nav">
+            <div class="elm-nav-container">
+                <ol>
+                    <li class="elm-footer-copyright">© Copyright 2026 Duck Creek Solution Center</li>
+                    <li class="elm-footer-powered-by"><a href="https://mindtouch.com/demo" class="mt-poweredby product " title="MindTouch" target="_blank">
+   Powered by CXone Expert
+   <span class="mt-registered">®</span>
+</a></li>
+                </ol>
+            </div>
+        </nav>
+        <div class="elm-footer-custom">
+
+<footer id="sc-footer"><section><h1>Resources</h1><ul><li class="lock"><a class="internal" href="https://solutioncenter.duckcreek.com/DUCKumentation_(Internal)/Internal_Content_Exchange" rel="internal">Content Exchange</a></li><li><a href="https://solutioncenter.duckcreek.com/Customer_Journey" rel="internal">Customer Journey</a></li><li><a href="https://solutioncenter.duckcreek.com/Customers_and_Partners" rel="internal">Customers &amp; Partners</a></li><li><a href="https://learn.duckcreekinsureverse.com/" target="_blank" rel="external noopener nofollow" class="link-https">Duck Creek University</a></li><li><a href="https://solutioncenter.duckcreek.com/Ducktionary" rel="internal">Glossary</a></li><li><a href="https://solutioncenter.duckcreek.com/Partner_Portal" rel="internal">Partner Portal</a></li><li><a href="https://community.duckcreek.com/" target="_blank" rel="external noopener nofollow" class="link-https">The Pond</a></li><li class="lock"><a href="https://solutioncenter.duckcreek.com/DUCKumentation_(Internal)" rel="internal">DUCKumentation</a></li><li class="lock"><a href="https://solutioncenter.duckcreek.com/Staging" rel="internal">Staging</a></li></ul></section><section><h1>Company</h1><ul><li><a href="https://www.duckcreek.com/" target="_blank" rel="external noopener nofollow" class="link-https">Duck Creek Home</a></li><li><div class="social-links"><div class="profile-links"><a title="linkedin" target="_blank" href="https://www.linkedin.com/company/21314/" rel="external noopener nofollow" class="cher-profile-link linkedin link-https"><svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><path d="M32 0C14.33 0 0 14.33 0 32s14.33 32 32 32 32-14.33 32-32S49.67 0 32 0zm-7.64 46.18c0 .07-.01.13-.01.19h-7.18V24.74h7.18c0 .02.01.04.01.06v.13c.01 7.09.01 14.17 0 21.25zm.11-26.48c-.44.91-1.16 1.5-2.1 1.84-.63.22-1.28.29-1.95.25-.61-.04-1.2-.18-1.74-.47-1.04-.56-1.66-1.42-1.88-2.58-.02-.12-.05-.23-.07-.34v-.68c.03-.13.06-.25.08-.38.14-.76.48-1.41 1.05-1.95.62-.59 1.38-.9 2.22-1.03.12-.02.23-.03.35-.05h.79c.12.02.23.04.35.05.72.11 1.38.36 1.95.82.69.57 1.1 1.3 1.26 2.17.14.81.05 1.6-.31 2.35zm25.8 26.68h-7.18V34.7c0-.57-.05-1.14-.16-1.7a5.13 5.13 0 0 0-.55-1.52c-.43-.73-1.05-1.22-1.87-1.43-.41-.11-.83-.14-1.26-.12a3.7 3.7 0 0 0-1.88.6c-.63.42-1.1.99-1.43 1.67-.13.25-.23.52-.29.8-.08.4-.1.8-.1 1.2v12.2h-7.21c0-.99 0-1.98.01-2.97.01-1.37.01-2.73.02-4.1 0-1.3 0-2.6.01-3.9 0-2.02.01-4.03.01-6.05 0-1.26-.01-2.52-.02-3.77 0-.23-.01-.46-.02-.69v-.14h7.19v3c.07-.02.08-.07.1-.11.35-.52.73-1.01 1.18-1.45a6.6 6.6 0 0 1 3.42-1.79c.86-.17 1.73-.2 2.61-.13.95.07 1.87.29 2.74.67 1.53.68 2.66 1.78 3.45 3.25.44.82.74 1.7.94 2.62.15.68.24 1.38.28 2.07.02.3.02.61.02.92v12.41c0 .02-.01.08-.01.14z"></path></svg></a></div></div></li></ul></section><section><h1>Product Documentation</h1><ul><li><a href="https://solutioncenter.duckcreek.com/Billing" rel="internal">Billing</a></li><li><a href="https://solutioncenter.duckcreek.com/Claims" rel="internal">Claims</a></li><li><a href="https://solutioncenter.duckcreek.com/Clarity" rel="internal">Clarity</a></li><li><a href="https://solutioncenter.duckcreek.com/Suite" rel="internal">Cross-Suite Platform</a></li><li><a href="https://solutioncenter.duckcreek.com/Design_System" rel="internal">Design System</a></li><li><a href="https://solutioncenter.duckcreek.com/Digital_Engagement" rel="internal">Digital Engagement</a></li><li><a href="https://solutioncenter.duckcreek.com/Distribution_Management" rel="internal">Distribution Management</a></li><li><a href="https://solutioncenter.duckcreek.com/Insights" rel="internal">Insights</a></li><li><a href="https://solutioncenter.duckcreek.com/Intelligence" rel="internal">Intelligence</a></li><li><a href="https://solutioncenter.duckcreek.com/Loss_Control" rel="internal">Loss Control</a></li><li><a href="https://solutioncenter.duckcreek.com/OnDemand" rel="internal">OnDemand</a></li><li><a href="https://solutioncenter.duckcreek.com/Payments_Orchestrator" rel="internal">Payments Orchestrator</a></li><li><a href="https://solutioncenter.duckcreek.com/Policy" rel="internal">Policy</a></li><li><a href="https://solutioncenter.duckcreek.com/Rating" rel="internal">Rating</a></li><li><a href="https://solutioncenter.duckcreek.com/Reinsurance" rel="internal">Reinsurance</a></li><li><a href="https://solutioncenter.duckcreek.com/Templates" rel="internal">Templates</a></li></ul></section><section><h1>Topics</h1><ul><li><a class="footer-link" href="https://solutioncenter.duckcreek.com/Suite/Frequently_asked_questions_(FAQ)" rel="internal">Frequently Asked Questions</a></li><li><a class="footer-link" href="https://solutioncenter.duckcreek.com/Suite/Implementation_Guidelines%2C_Approaches%2C_and_Patterns" rel="internal">Implementation</a></li><li><a class="footer-link" href="https://solutioncenter.duckcreek.com/Suite/Internationalization" rel="internal">Internationalization</a></li><li><a class="footer-link" href="https://solutioncenter.duckcreek.com/Suite/Performance" rel="internal">Performance</a></li></ul></section><small>Copyright 2026 Duck Creek Technologies. All Rights Reserved. <a href="https://solutioncenter.duckcreek.com/Acceptable_use_policy" rel="internal">Read our Acceptable Use Policy</a>.</small></footer>
+
+
+</div>
+    </footer>
+</main>
+<div id="mt-modal-container"></div>
+
+
+
+    <script type="text/javascript" async="async" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/f1.js.download"></script>
+
+<script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/serviceworker-unregister.js.download"></script><script type="text/javascript" data-mindtouch-module="true" nonce="" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/pageLoaded.js.download"></script>
+
+
+
+
+<script type="text/javascript" data-mindtouch-module="true" src="./Loss Control (Classic and RiskHub) 5.1.9.2 - July 3, 2025 release notes - Duck Creek Solution Center_files/f1.widget.js.download"></script><div class="mt-hide" id="mt-image-preview" style="opacity: 0;"></div></body></html>
