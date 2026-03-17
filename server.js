@@ -6,6 +6,7 @@ import { dirname, join } from "path";
 import { clusterDefects } from "./lib/clustering.js";
 import { generateRCA } from "./lib/rca-engine.js";
 import { buildCorpus, cosineSimilarity, topTerms } from "./lib/tfidf.js";
+import { testConnection as testZenDesk, isZenDeskConfigured, collectZenDeskIds } from "./lib/zendesk.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -36,6 +37,29 @@ app.get("/api/mode", (req, res) => {
   } else {
     res.json({ mode: "offline", label: "Template Engine (offline)" });
   }
+});
+
+// ─── GET /api/zendesk/status ──────────────────────────────────────────────────
+app.get("/api/zendesk/status", async (req, res) => {
+  if (!isZenDeskConfigured()) {
+    return res.json({
+      configured: false,
+      message: "ZenDesk not configured. Set ZENDESK_SUBDOMAIN, ZENDESK_EMAIL and ZENDESK_API_TOKEN in .env",
+    });
+  }
+  const result = await testZenDesk();
+  // Count defects with ZenDesk references
+  const idMap = collectZenDeskIds(defects);
+  res.json({
+    configured: true,
+    connected: result.ok,
+    mode: result.mode,
+    message: result.message,
+    user: result.user || null,
+    subdomain: process.env.ZENDESK_SUBDOMAIN,
+    defects_with_zen_refs: idMap.size,
+    zen_ticket_ids: [...idMap.keys()],
+  });
 });
 
 // ─── GET /api/stats ───────────────────────────────────────────────────────────
